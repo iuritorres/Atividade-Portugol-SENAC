@@ -10,58 +10,58 @@ programa {
 		escreva("Boa Tarde, este código foi desenvolvido por Iuri Torres e Lucas Mendonça") // Exibe os desenvolvedores do código
 		escreva("\nTurma de Aprendizagem em desenvolvimento de Software - UC 2 \n") // Exibe a turma dos desenvolvedores
 		
-		escreva("\nDigite o seu nome ou nome social: ")
+		escreva("\nDigite o seu nome ou nome social: ") // Pergunta o nome
 		leia(nome)
 		
-		escreva("\nDigite Ano de nascimento no formato de ddmmaaaa: ")
+		escreva("\nDigite Ano de nascimento no formato de ddmmaaaa: ") // Pergunta a data de nascimento
 		leia(dataNascimento)
 		
-		escreva("\nDigite sua profissão: ")
+		escreva("\nDigite sua profissão: ")  // Pergunta a profissão
 		leia(profissao)
 		
-		escreva("\nDigite seu gênero: ")
+		escreva("\nDigite seu gênero: ") // Pergunta o gênero
 		leia(genero)
 		
-		escreva("\nDigite seu e-mail: ")
+		escreva("\nDigite seu e-mail: ")  // Pergunta o e-mail
 		leia(email)
 		
-		escreva("\nDigite o link do seu github: ")
+		escreva("\nDigite o link do seu github: ") // Pergunta o link do github
 		leia(perfilGithub)
 		
 		// Cálculos
-		dataAtual = 02052022
-		Idade = dataNascimento - dataAtual
-		IdadeMentira = 20
-		idadex50 = IdadeMentira * 50
-		resultadodiv60 = idadex50 / 60
-		porcentagemidade = IdadeMentira * 0.25
-		idade2022 = IdadeMentira + 2022
-		idade2022menos45 = idade2022 - 45
+		dataAtual = 02052022 // Data Atual
+		Idade = dataNascimento - dataAtual // Deveria calcular a idade :/
+		IdadeMentira = 20 // Idade supositória
+		idadex50 = IdadeMentira * 50 // Cálculo da multiplicação
+		resultadodiv60 = idadex50 / 60 // Cálculo do resultado anterior dividido por 60
+		porcentagemidade = IdadeMentira * 0.25 // Cálculo da porcentagem da idade
+		idade2022 = IdadeMentira + 2022 // Cálculo da idade + 2022
+		idade2022menos45 = idade2022 - 45 // Cálculo do resultado anterior - 45
 		
 		
 		// Exebição dos resultados
 		
-		escreva("\n----------------------------\n")
+		escreva("\n----------------------------\n") // Divisória
 		
 		escreva("\nNome: ", nome, "\n")
 		
-		escreva("\n----------------------------\n")
+		escreva("\n----------------------------\n") // Divisória
 		
-		escreva("\nIdade: ", IdadeMentira)
-		escreva("\nSua Idade * 50 = ", idadex50)
-		escreva("\nO resultado / 60 = ", resultadodiv60)
-		escreva("\n25% da sua idade = ", porcentagemidade)
-		escreva("\nSua Idade + 2022 = ", idade2022)
-		escreva("\nO resultado - 45 = ", idade2022menos45, "\n")
+		escreva("\nIdade: ", IdadeMentira) // Exibe a idade
+		escreva("\nSua Idade * 50 = ", idadex50) // Exibe a idade vezes 50
+		escreva("\nO resultado / 60 = ", resultadodiv60) // Exibe o resultado dividido por 60
+		escreva("\n25% da sua idade = ", porcentagemidade) // Exibe 25% da idade
+		escreva("\nSua Idade + 2022 = ", idade2022) // Exibe o resultado da idade + 2022
+		escreva("\nO resultado - 45 = ", idade2022menos45, "\n") // Exibe o resultado da ultima conta menos 45
 		
-		escreva("\n----------------------------\n")
+		escreva("\n----------------------------\n") // Divisória
 		
-		escreva("\nProfissão: ", profissao)
-		escreva("\nGênero: ", genero)
-		escreva("\nE-mail: ", email)
-		escreva("\nPerfil Github: ", perfilGithub, "\n")
+		escreva("\nProfissão: ", profissao) // Exibe a profissão
+		escreva("\nGênero: ", genero) // Exibe o gênero
+		escreva("\nE-mail: ", email) // Exibe o e-mail
+		escreva("\nPerfil Github: ", perfilGithub, "\n") // Exibe o link do GitHub
 		
-		escreva("\n----------------------------\n")
+		escreva("\n----------------------------\n") // Divisória
 		
 		
 	}
