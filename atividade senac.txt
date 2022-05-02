@@ -1,5 +1,10 @@
 programa {
 	funcao inicio() {
+	
+	    // Unidade Curricular: [Desenvolvimento de Sistemas de Informação]
+	    // Professor: [Ivson Estevão Soares]
+	    // Autores: [Iuri Torres, Lucas Mendonça]
+	    // Data de criação: [30/04/2022]
 	    
 	    // Tipos de dados das variáveis
 	    cadeia nome, profissao, genero, email, perfilGithub
@@ -41,11 +46,11 @@ programa {
 		
 		// Exebição dos resultados
 		
-		escreva("\n----------------------------\n")              // Divisória
+		escreva("\n============================\n")              // Divisória
 		
 		escreva("\nNome: ", nome, "\n")
 		
-		escreva("\n----------------------------\n")              // Divisória
+		escreva("\n============================\n")              // Divisória
 		
 		escreva("\nIdade: ", IdadeMentira)                       // Exibe a idade
 		escreva("\nSua Idade * 50 = ", idadex50)                 // Exibe a idade vezes 50
@@ -54,14 +59,14 @@ programa {
 		escreva("\nSua Idade + 2022 = ", idade2022)              // Exibe o resultado da idade + 2022
 		escreva("\nO resultado - 45 = ", idade2022menos45, "\n") // Exibe o resultado da ultima conta menos 45
 		
-		escreva("\n----------------------------\n")              // Divisória
+		escreva("\n============================\n")              // Divisória
 		
 		escreva("\nProfissão: ", profissao)                      // Exibe a profissão
 		escreva("\nGênero: ", genero)                            // Exibe o gênero
 		escreva("\nE-mail: ", email)                             // Exibe o e-mail
 		escreva("\nPerfil Github: ", perfilGithub, "\n")         // Exibe o link do GitHub
 		
-		escreva("\n----------------------------\n")              // Divisória
+		escreva("\n============================\n")              // Divisória
 		
 	}
 }
