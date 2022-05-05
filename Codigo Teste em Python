@@ -1,0 +1,74 @@
+# COLETA DE DADOS
+
+nome = input('Qual o seu nome? ')                                #Pergunta e Armazena a variável nome
+print('Olá, ', nome)
+
+anoNascimento = int(input('Qual o ano do seu Nascimento? '))     #Pergunta e Armazena a variável anoNascimento
+profissao = input('Qual sua profissão? ')                        #Pergunta e Armazena a variável profissao
+idade = int(input('Qual sua idade? '))
+
+
+# CÁLCULOS
+
+resultadoSoma = (anoNascimento + 2022)
+
+if idade >= 18:
+    maiordeidade = 'Sim'
+else:
+    maiordeidade = 'Não'
+
+
+# IMPRESSÃO
+
+print('\n============[SOMA ENTRE VARIÁVEIS]============\n')
+
+operador = input('Qual operação você deseja fazer (+, -, *, /): ')
+x = int(input('Declare X: ' ))
+y = int(input('Declare y: ' ))
+
+if operador == '+' :
+    resultado = x + y
+    
+elif operador == '-':
+    resultado = x - y
+    
+elif operador == '*':
+    resultado = x * y
+    
+elif operador == '/':
+    resultado = x / y
+    
+else:
+    print('Você não declarou um operador válido.')
+    operador = input('Qual operação você deseja fazer (+, -, *, /): ')
+    x = int(input('Declare X: ' ))
+    y = int(input('Declare y: ' ))
+
+    if operador == '+' :
+      resultado = x + y
+    
+    elif operador == '-':
+       resultado = x - y
+    
+    elif operador == '*':
+       resultado = x * y
+    
+    elif operador == '/':
+      resultado = x / y
+    
+    else:
+      print('Você não declarou um operador válido.')
+      print('\n\n\n\n\n')
+
+    
+print('\n===============[DADOS PESSOAIS]===============\n')
+print('Nome: ', nome)
+print('Idade: ', idade)
+print('Profissão:', profissao)
+
+print('\n(Maior ou igual que 18, Sim, menor que 18, Nao)')
+print('Maior de Idade: ', maiordeidade)
+
+print('\nResultado da operação: ', resultado)
+    
+print('\n=========================================\n')
