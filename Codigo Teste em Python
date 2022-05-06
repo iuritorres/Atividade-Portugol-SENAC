@@ -2,7 +2,6 @@
 
 from ast import While
 
-
 # ACESSO AO FORMULÁRIO
 
 print('\n\n')
@@ -26,7 +25,7 @@ print('\n=================[FORMULÁRIO]=================\n')          # Espaçam
 # COLETA DE DADOS PESSOAIS
 
 nome = input('Qual o seu nome? ')                                    # Pergunta e Armazena a variável nome
-print('Olá, ', nome)
+print('Olá, é um prazer te conhecer {}!'. format(nome))
 
 anoNascimento = int(input('Qual o ano do seu Nascimento? '))         # Pergunta e Armazena a variável anoNascimento
 profissao = input('Qual sua profissão? ')                            # Pergunta e Armazena a variável profissao
@@ -77,19 +76,19 @@ while True:
         break
 
     else:
-        print('\nVocê não declarou um operador válido.\n')
+        print('\n {}, Você não declarou um operador válido.\n'. format(nome))
 
 
 #######################################
     
 print('\n===============[DADOS PESSOAIS]===============\n')       # Imprime os dados pessoais
-print('Nome: ', nome)
-print('Idade: ', idade)
-print('Profissão: ', profissao)
+print('Nome: {}'. format(nome))
+print('Idade: {}'. format(idade))
+print('Profissão: {}'. format(profissao))
 
 print('\n(Maior ou igual que 18, Sim, menor que 18, Nao)')
-print('Maior de Idade: ', maiordeidade)
+print('Maior de Idade: {}'. format(maiordeidade))
 
-print('\nResultado da operação: ', resultado)
+print('\nResultado da operação: {}'. format(resultado))
     
 print('\n==============================================\n')      # Imprime os dados pessoais
