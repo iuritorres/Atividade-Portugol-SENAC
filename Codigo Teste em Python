@@ -1,16 +1,21 @@
+# ESPAÇO ORGANIZACIONAL
+
+print('\n\n\n\n')
+print('=================[FORMULÁRIO]=================\n')            # Espaçamento e Divisória
+
 # COLETA DE DADOS
 
-nome = input('Qual o seu nome? ')                                # Pergunta e Armazena a variável nome
+nome = input('Qual o seu nome? ')                                    # Pergunta e Armazena a variável nome
 print('Olá, ', nome)
 
-anoNascimento = int(input('Qual o ano do seu Nascimento? '))     # Pergunta e Armazena a variável anoNascimento
-profissao = input('Qual sua profissão? ')                        # Pergunta e Armazena a variável profissao
-idade = int(input('Qual sua idade? '))                           # Pergunta e Armazena a variável idade
+anoNascimento = int(input('Qual o ano do seu Nascimento? '))         # Pergunta e Armazena a variável anoNascimento
+profissao = input('Qual sua profissão? ')                            # Pergunta e Armazena a variável profissao
+idade = int(input('Qual sua idade? '))                               # Pergunta e Armazena a variável idade
 
 
 # CÁLCULO MAIOR DE IDADE
 
-resultadoSoma = (anoNascimento + 2022)                           # Cálculo anoNascimento + 2022
+resultadoSoma = (anoNascimento + 2022)                               # Cálculo anoNascimento + 2022 e Cálculo de maior de idade
 
 if idade >= 18:
     maiordeidade = 'Sim'
@@ -20,11 +25,13 @@ else:
 
 # IMPRESSÃO
 
-print('\n============[SOMA ENTRE VARIÁVEIS]============\n')
+print('\n============[SOMA ENTRE VARIÁVEIS]============\n')          # Divisória
 
-operador = input('Qual operação você deseja fazer (+, -, *, /): ')
-x = int(input('Declare X: ' ))
-y = int(input('Declare y: ' ))
+operador = input('Qual operação você deseja fazer (+, -, *, /): ')   # Declara o operador do cálculo
+x = int(input('Declare X: ' ))                                       # Recebe o primeiro número
+y = int(input('Declare y: ' ))                                       # Recebe o segundo número
+
+## CONDIÇÃO PARA ESCOLHA DE OPERADOR ##
 
 if operador == '+' :
     resultado = (x + y)
@@ -59,6 +66,7 @@ else:
     else:
         resultado = 'Você não declarou um operador válido.'
 
+#######################################
     
 print('\n===============[DADOS PESSOAIS]===============\n')
 print('Nome: ', nome)
