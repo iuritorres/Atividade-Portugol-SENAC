@@ -1,9 +1,29 @@
-# ESPAÇO ORGANIZACIONAL
+# IMPORTAÇÕES
 
-print('\n\n\n\n')
-print('=================[FORMULÁRIO]=================\n')            # Espaçamento e Divisória
+from ast import While
 
-# COLETA DE DADOS
+
+# ACESSO AO FORMULÁRIO
+
+print('\n\n')
+print('===================[ACESSO]===================\n')            # Espaçamento e Divisória
+
+while True:
+    password = input('Qual é a sua senha?: ')
+
+    if password == 'aluno123':
+        print('\nAcesso Liberado')
+
+        break
+
+    else:
+        print('\nAcesso Negado\n')
+        print('==============================================\n')
+
+
+print('\n=================[FORMULÁRIO]=================\n')          # Espaçamento e Divisória
+
+# COLETA DE DADOS PESSOAIS
 
 nome = input('Qual o seu nome? ')                                    # Pergunta e Armazena a variável nome
 print('Olá, ', nome)
@@ -25,46 +45,34 @@ else:
 
 # IMPRESSÃO
 
-print('\n============[SOMA ENTRE VARIÁVEIS]============\n')          # Divisória
+print('\n============[SOMA ENTRE VARIÁVEIS]============\n')              # Divisória
 
-operador = input('Qual operação você deseja fazer (+, -, *, /): ')   # Declara o operador do cálculo
 x = int(input('Declare X: ' ))                                       # Recebe o primeiro número
 y = int(input('Declare y: ' ))                                       # Recebe o segundo número
 
-## CONDIÇÃO PARA ESCOLHA DE OPERADOR ##
+    ## CONDIÇÃO PARA ESCOLHA DE OPERADOR ##
 
-if operador == '+' :
-    resultado = (x + y)
-    
-elif operador == '-':
-    resultado = (x - y)
-    
-elif operador == '*':
-    resultado = (x * y)
-    
-elif operador == '/':
-    resultado = (x / y)
-    
-else:
-    print('Você não declarou um operador válido.')
-    operador = input('Qual operação você deseja fazer (+, -, *, /): ')
-    x = int(input('Declare X: ' ))
-    y = int(input('Declare y: ' ))
+while True:
 
-    if operador == '+' :
-        resultado = (x + y)
+    operador = input('Qual operação você deseja fazer (+, -, *, /): ')   # Declara o operador do cálculo
+
+    if operador == '+':
+        resultado = x + y
     
     elif operador == '-':
-        resultado = (x - y)
+       resultado = x - y
     
     elif operador == '*':
-        resultado = (x * y)
+        resultado = x * y
     
     elif operador == '/':
-        resultado = (x / y)
+        resultado = x / y
     
+        break
+
     else:
-        resultado = 'Você não declarou um operador válido.'
+        print('\nVocê não declarou um operador válido.\n')
+
 
 #######################################
     
