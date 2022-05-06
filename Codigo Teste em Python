@@ -58,12 +58,18 @@ while True:
 
     if operador == '+':
         resultado = x + y
+        
+        break
     
     elif operador == '-':
-       resultado = x - y
+        resultado = x - y
+
+        break
     
     elif operador == '*':
         resultado = x * y
+
+        break
     
     elif operador == '/':
         resultado = x / y
@@ -76,7 +82,7 @@ while True:
 
 #######################################
     
-print('\n===============[DADOS PESSOAIS]===============\n')
+print('\n===============[DADOS PESSOAIS]===============\n')       # Imprime os dados pessoais
 print('Nome: ', nome)
 print('Idade: ', idade)
 print('Profissão: ', profissao)
@@ -86,4 +92,4 @@ print('Maior de Idade: ', maiordeidade)
 
 print('\nResultado da operação: ', resultado)
     
-print('\n==============================================\n')
+print('\n==============================================\n')      # Imprime os dados pessoais
