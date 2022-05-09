@@ -1,4 +1,4 @@
-### DESENVOLVEDOR : IURI TORRES ###
+### DESENVOLVEDOR : IURI TORRES | RAFAEL LUÍS ###
 
 ### IMPORTAÇÕES ###
 
@@ -44,14 +44,17 @@ while True:
 
     print('\n','='*57,'\n')   # DIVISÓRIA
 
+    print(' Digite 0 nos 2 campos para parar a consulta!\n')
+
     consulta_mes = input(' Qual mês você deseja acessar?: ')
     ID_consumidor = int(input(' Digite o ID do Consumidor que deseja consultar: '))
-
-    mes = (f'{consulta_mes}.xlsx')
 
         # PROCURA OS DADOS REFERENTES DO ID NA PLANILHA E ARMAZINA EM VARIÁVEIS RESPECTIVAS
 
     if consulta_mes in lista_meses and ID_consumidor in tabela_consumidores['ID']:
+
+        mes = (f'{consulta_mes}')
+        tabela_consumidores = pd.read_excel(f'C:\\Users\\iurit\\Desktop\\ESTUDOS PROGRAMAÇÃO\\Desafio 002\\{mes}.xlsx')
 
         nome_consumidor = tabela_consumidores.loc[ID_consumidor == tabela_consumidores['ID'], 'Consumidor'].values[0]
         tipo_consumidor = tabela_consumidores.loc[ID_consumidor == tabela_consumidores['ID'], 'Tipo'].values[0]
@@ -68,6 +71,9 @@ while True:
 
         float(valor_do_consumo)                                                   # DEFINE VALOR COMO UMA VAR FLOAT
 
+        soma_total_3tipos = ((consumo_consumidor * preco_residencial) + (consumo_consumidor * preco_comercial) + (consumo_consumidor * preco_industrial))
+        media_tipo1e2 = ((consumo_consumidor * preco_residencial) + (consumo_consumidor * preco_comercial))/2
+
         # IMPRIME OS DADOS PESQUISADOS
 
         os.system('cls')
@@ -78,11 +84,17 @@ while True:
 
 
         print('\n\n ==================[DADOS DO CONSUMIDOR]==================\n')   # DIVISÓRIA
-        print(f' ID.................: #{ID_consumidor}')
-        print(f' NOME...............: {nome_consumidor}')
-        print(f' TIPO...............: {tipo_consumidor}')
-        print(f' kWh CONSUMIDO......: {consumo_consumidor}')
-        print(f' VALOR A SE PAGAR...: R${valor_do_consumo:,.2f}')
+        print(f' ID.......................: #{ID_consumidor}')
+        print(f' NOME.....................: {nome_consumidor}')
+        print(f' TIPO.....................: {tipo_consumidor}')
+        print(f' kWh CONSUMIDO............: {consumo_consumidor}')
+        print(f' VALOR A SE PAGAR.........: R${valor_do_consumo:,.2f}')
+        print(f' CONSUMO PARA OS 3 TIPOS..: R${soma_total_3tipos:,.2f}')
+        print(f' MÉDIA DO CONSUMO 1 E 2...: {media_tipo1e2}')
+
+    elif consulta_mes or ID_consumidor == '0':
+
+        break
 
     else:
 
@@ -94,7 +106,3 @@ while True:
 
         print('\n','='*57,'\n')   # DIVISÓRIA
         print(' Você digitou um mês ou um ID inválido, tente novamente!')
-
-# CÁLCULOS GERAIS REQUISITADOS DOS DADOS
-
-print(' e agora.... :/ ')
