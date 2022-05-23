@@ -106,10 +106,10 @@ while True:
                     posicao_registro = resultado.index(registro)
                     conteudo_registro = resultado[posicao_registro]
 
-                    if conteudo_registro[6] == 'M':
+                    if conteudo_registro[7] == 'M':
                         sexo = 'Masculino'
 
-                    elif conteudo_registro[6] == 'F':
+                    elif conteudo_registro[7] == 'F':
                         sexo = 'Feminino'
 
                     print(f'\n[{posicao_registro + 1}° registro]: ')
