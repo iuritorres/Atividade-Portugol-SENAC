@@ -7,7 +7,9 @@
 ### IMPORTAÇÕES ###
 
 from dataclasses import replace
+import os
 import mysql.connector
+from time import sleep
 
 ### CONEXÃO DATABASE ###
 
@@ -20,6 +22,9 @@ con = mysql.connector.connect(
 )
 
 if con.is_connected():
+
+    os.system('cls')
+
     db_info = con.get_server_info()
     print('Conectado ao Servdor SQL versão ',db_info)
     cursor = con.cursor()
@@ -27,30 +32,54 @@ if con.is_connected():
     linha = cursor.fetchone()
     print('Conectado ao banco de dados ', linha)
 
+    sleep(2)
+
+
 ### CODIGO ###
+
+# Timer 3 segundos
+
+def timer3s():
+        lista_timer3s = [3, 2, 1]
+        for segundo in lista_timer3s:
+            
+            os.system('cls')
+
+            print('\n','='*129,'\n')
+            print(' Acesso ao sistema em')
+            print(f' {segundo} segundos...')
+            print('\n','='*129,'\n')
+            sleep(1)
 
 # Menu de Funções do Sistema
 
 def funcoes_sistema():
-    print('0 - Finalizar Consultas')
-    print('1 - Checar registros de uma tabela.')
-    print('2 - Inserir um registro em uma tabela.')
-    print('3 - Atualizar uma informação de uma tabela.')
-    print('4 - Deletar um registro de uma tabela.')
+    print('\n','='*68,'\n')
+    print(' 0 - Finalizar Consultas')
+    print(' 1 - Checar registros de uma tabela.')
+    print(' 2 - Inserir um registro em uma tabela.')
+    print(' 3 - Atualizar uma informação de uma tabela.')
+    print(' 4 - Deletar um registro de uma tabela.')
+    print('\n','='*68,'\n')
 
 
 # INÍCIO DA CONSULTA
 
+timer3s()
+os.system('cls')
+
 while True:
 
     funcoes_sistema()
-    id_exec_funcao_sistema = int(input('Digite um número que corresponda a função que deseja executar: '))
+    id_exec_funcao_sistema = int(input(' Digite um número que corresponda a função que deseja executar: '))
+    print('\n','='*68,'\n')
+
 
     # FUNÇÃO SELECT
 
     if id_exec_funcao_sistema == 1:
         print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input('Digite o nome da tabela que deseja consultar: '))
+        tabela_consulta = str(input(' Digite o nome da tabela que deseja consultar: ')).upper()
 
         def funcao_select():
             comando = f'SELECT * FROM {tabela_consulta}'
@@ -69,12 +98,12 @@ while True:
 
                     nome_doador = resultado_nome_doador
 
-                    print(f'\n[{posicao_registro + 1}° registro]: ')
-                    print(f'ID do Doador: {conteudo_registro[0]}')
-                    print(f'Nome do Doador: {nome_doador}' .replace("[('", "") .replace("',)]", ''))
-                    print(f'Data da Doação: {conteudo_registro[1]}')
-                    print(f'Tipo de Doação: {conteudo_registro[2]}')
-                    print(f'Meio de Pagamento: {conteudo_registro[3]}')
+                    print(f'\n', ('='*27), f'[{posicao_registro + 1}° registro]', ('='*27))
+                    print(f' ID do Doador: {conteudo_registro[0]}')
+                    print(f' Nome do Doador: {nome_doador}' .replace("[('", "") .replace("',)]", ''))
+                    print(f' Data da Doação: {conteudo_registro[1]}')
+                    print(f' Tipo de Doação: {conteudo_registro[2]}')
+                    print(f' Meio de Pagamento: {conteudo_registro[3]}')
 
 
             elif tabela_consulta == 'DOADORES':
@@ -89,16 +118,16 @@ while True:
                     elif conteudo_registro[6] == 'F':
                         sexo = 'Feminino'
 
-                    print(f'\n[{posicao_registro + 1}° registro]: ')
-                    print(f'ID: {conteudo_registro[0]}')
-                    print(f'Nome Completo: {conteudo_registro[1]}')
-                    print(f'CPF: {conteudo_registro[2]}')
-                    print(f'E-mail: {conteudo_registro[3]}')
-                    print(f'Telefone: {conteudo_registro[4]}')
-                    print(f'Data de Nascimento: {conteudo_registro[5]}')
-                    print(f'Sexo: {sexo}')
-                    print(f'Nome do Pai: {conteudo_registro[7]}')
-                    print(f'Nome da Mãe: {conteudo_registro[8]}')
+                    print(f'\n', ('='*27), f'[{posicao_registro + 1}° registro]', ('='*27))
+                    print(f' ID: {conteudo_registro[0]}')
+                    print(f' Nome Completo: {conteudo_registro[1]}')
+                    print(f' CPF: {conteudo_registro[2]}')
+                    print(f' E-mail: {conteudo_registro[3]}')
+                    print(f' Telefone: {conteudo_registro[4]}')
+                    print(f' Data de Nascimento: {conteudo_registro[5]}')
+                    print(f' Sexo: {sexo}')
+                    print(f' Nome do Pai: {conteudo_registro[7]}')
+                    print(f' Nome da Mãe: {conteudo_registro[8]}')
 
             elif tabela_consulta == 'FUNCIONARIOS':
 
@@ -112,17 +141,17 @@ while True:
                     elif conteudo_registro[7] == 'F':
                         sexo = 'Feminino'
 
-                    print(f'\n[{posicao_registro + 1}° registro]: ')
-                    print(f'ID: {conteudo_registro[0]}')
-                    print(f'Nome Completo: {conteudo_registro[1]}')
-                    print(f'CPF: {conteudo_registro[2]}')
-                    print(f'E-mail: {conteudo_registro[3]}')
-                    print(f'Telefone: {conteudo_registro[4]}')
-                    print(f'Tamanho da camisa: {conteudo_registro[5]}')
-                    print(f'Data de Nascimento: {conteudo_registro[6]}')
-                    print(f'Sexo: {sexo}')
-                    print(f'Nome do Pai: {conteudo_registro[8]}')
-                    print(f'Nome da Mãe: {conteudo_registro[9]}')
+                    print(f'\n', ('='*27), f'[{posicao_registro + 1}° registro]', ('='*27))
+                    print(f' ID: {conteudo_registro[0]}')
+                    print(f' Nome Completo: {conteudo_registro[1]}')
+                    print(f' CPF: {conteudo_registro[2]}')
+                    print(f' E-mail: {conteudo_registro[3]}')
+                    print(f' Telefone: {conteudo_registro[4]}')
+                    print(f' Tamanho da camisa: {conteudo_registro[5]}')
+                    print(f' Data de Nascimento: {conteudo_registro[6]}')
+                    print(f' Sexo: {sexo}')
+                    print(f' Nome do Pai: {conteudo_registro[8]}')
+                    print(f' Nome da Mãe: {conteudo_registro[9]}')
 
         funcao_select()
 
@@ -130,14 +159,14 @@ while True:
 
     elif id_exec_funcao_sistema == 2:
         print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input('Digite o nome da tabela que deseja inserir um registro: '))
+        tabela_consulta = str(input(' Digite o nome da tabela que deseja inserir um registro: ')).upper()
 
         if tabela_consulta == 'DOACOES':
 
-            id_doador_consulta = int(input('Digite o ID do doador: '))
-            data_doacao_consulta = str(input('Digite a data atual no formato AAAA-MM-DD (inclua os "-"): '))
-            tipo_consulta = str(input('Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): '))
-            forma_pagamento_consulta = str(input('Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): '))
+            id_doador_consulta = int(input(' Digite o ID do doador: '))
+            data_doacao_consulta = str(input(' Digite a data atual no formato AAAA-MM-DD (inclua os "-"): '))
+            tipo_consulta = str(input(' Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): '))
+            forma_pagamento_consulta = str(input(' Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): '))
 
             def funcao_insertinto():
                 comando = f"""INSERT INTO DOACOES (ID_DOADOR, DATA_DOACAO, TIPO, FORMA_PAGAMENTO)
@@ -153,14 +182,14 @@ while True:
 
         elif tabela_consulta == 'DOADORES':
 
-            nome_consulta = str(input('Digite o nome completo para o novo cadastro: '))
-            CPF_consulta = int(input('Digite o CPF (somente números): '))
-            email_consulta = str(input('Digite o e-mail: '))
-            num_telefone_consulta = int(input('Digite o número de telefone (DDD + número sem o 9): '))
-            dataNasc_consulta = str(input('Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
-            sexo_consulta = str(input('Digite o sexo (M/F): '))
-            nomePai_consulta = str(input('Digite o nome completo do Pai: '))
-            nomeMae_consulta = str(input('Digite o nome completo da Mae: '))
+            nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+            CPF_consulta = int(input(' Digite o CPF (somente números): '))
+            email_consulta = str(input(' Digite o e-mail: '))
+            num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+            dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+            sexo_consulta = str(input(' Digite o sexo (M/F): '))
+            nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+            nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
 
             def funcao_insertinto():
                 comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE)
@@ -175,15 +204,15 @@ while True:
 
         elif tabela_consulta == 'FUNCIONARIOS':
 
-            nome_consulta = str(input('Digite o nome completo para o novo cadastro: '))
-            CPF_consulta = int(input('Digite o CPF (somente números): '))
-            email_consulta = str(input('Digite o e-mail: '))
-            num_telefone_consulta = int(input('Digite o número de telefone (DDD + número sem o 9): '))
-            num_camisa_consulta = str(input('Digite o tamanho da sua camisa (P/M/PP/MM etc.): '))
-            dataNasc_consulta = str(input('Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
-            sexo_consulta = str(input('Digite o sexo (M/F): '))
-            nomePai_consulta = str(input('Digite o nome completo do Pai: '))
-            nomeMae_consulta = str(input('Digite o nome completo da Mae: '))
+            nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+            CPF_consulta = int(input(' Digite o CPF (somente números): '))
+            email_consulta = str(input(' Digite o e-mail: '))
+            num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+            num_camisa_consulta = str(input(' Digite o tamanho da sua camisa (P/M/PP/MM etc.): '))
+            dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+            sexo_consulta = str(input(' Digite o sexo (M/F): '))
+            nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+            nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
 
             def funcao_insertinto():
                 comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE)
@@ -194,17 +223,19 @@ while True:
                 cursor.execute(comando)
                 con.commit()
 
+            funcao_insertinto()
+
     # FUNÇÃO UPDATE
 
     elif id_exec_funcao_sistema == 3:
         print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input('Digite o nome da tabela que deseja alterar um registro: '))
+        tabela_consulta = str(input(' Digite o nome da tabela que deseja alterar um registro: ')).upper()
 
-        campo_consulta = str(input('Digite o campo a ser alterado: '))
-        novaInfo_consulta = input('Digite a nova informação do registro: ')
+        campo_consulta = str(input(' Digite o campo a ser alterado: '))
+        novaInfo_consulta = input(' Digite a nova informação do registro: ')
 
-        campoCondicao_consulta = str(input('Digite o campo condicional: '))
-        valorCondicao_consulta = input('Digite o valor condicional do campo definido acima: ')
+        campoCondicao_consulta = str(input(' Digite o campo condicional: '))
+        valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
 
         def funcao_update():
             comando = f'UPDATE {tabela_consulta} SET {campo_consulta} = "{novaInfo_consulta}" WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}";'
@@ -217,17 +248,28 @@ while True:
 
     elif id_exec_funcao_sistema == 4:
         print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input('Digite o nome da tabela que deseja deletar um registro: '))
+        tabela_consulta = str(input(' Digite o nome da tabela que deseja deletar um registro: ')).upper()
 
-        campoCondicao_consulta = str(input('Digite o campo condicional: '))
-        valorCondicao_consulta = input('Digite o valor condicional do campo definido acima: ')
+        campoCondicao_consulta = str(input(' Digite o campo condicional: '))
+        valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
 
         def funcao_delete():
+
             comando = f'DELETE FROM {tabela_consulta} WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}"'
             cursor.execute(comando)
             con.commit()
 
-        funcao_delete()
+        confirmacao = str(input('Você realmente deseja deletar esse registro? (SIM/NAO): ')).upper()
+
+        if confirmacao == 'SIM':
+
+            funcao_delete()
+
+        elif confirmacao == 'NAO':
+
+            print('A solicitação foi cancelada!')
+
+            break
 
     elif id_exec_funcao_sistema == 0:
 
