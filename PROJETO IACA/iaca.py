@@ -45,10 +45,10 @@ def timer3s():
             
             os.system('cls')
 
-            print('\n','='*129,'\n')
+            print('\n','='*68,'\n')
             print(' Acesso ao sistema em')
             print(f' {segundo} segundos...')
-            print('\n','='*129,'\n')
+            print('\n','='*68,'\n')
             sleep(1)
 
 # Menu de Funções do Sistema
@@ -78,7 +78,7 @@ while True:
     # FUNÇÃO SELECT
 
     if id_exec_funcao_sistema == 1:
-        print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
         tabela_consulta = str(input(' Digite o nome da tabela que deseja consultar: ')).upper()
 
         def funcao_select():
@@ -158,15 +158,28 @@ while True:
     # FUNÇÃO INSERT INTO
 
     elif id_exec_funcao_sistema == 2:
-        print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
         tabela_consulta = str(input(' Digite o nome da tabela que deseja inserir um registro: ')).upper()
 
         if tabela_consulta == 'DOACOES':
 
+            print('\n [REGISTRO]:')
+
             id_doador_consulta = int(input(' Digite o ID do doador: '))
+
+            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta}')
+
             data_doacao_consulta = str(input(' Digite a data atual no formato AAAA-MM-DD (inclua os "-"): '))
-            tipo_consulta = str(input(' Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): '))
-            forma_pagamento_consulta = str(input(' Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): '))
+
+            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta}')
+
+            tipo_consulta = str(input(' Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): ')).upper()
+
+            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta}')
+
+            forma_pagamento_consulta = str(input(' Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): ')).upper()
+
+            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta} \n FORMA DE PAGAMENTO: {forma_pagamento_consulta}')
 
             def funcao_insertinto():
                 comando = f"""INSERT INTO DOACOES (ID_DOADOR, DATA_DOACAO, TIPO, FORMA_PAGAMENTO)
@@ -177,7 +190,15 @@ while True:
                 cursor.execute(comando)
                 con.commit()
 
-            funcao_insertinto()
+            confirmacao = str(input(' Você realmente deseja inserir esse registro? (SIM/NAO): ')).upper()
+
+            if confirmacao == 'SIM':
+
+                funcao_insertinto()
+
+            elif confirmacao == 'NAO':
+
+                print(' A solicitação foi cancelada!')
 
 
         elif tabela_consulta == 'DOADORES':
@@ -228,7 +249,7 @@ while True:
     # FUNÇÃO UPDATE
 
     elif id_exec_funcao_sistema == 3:
-        print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
         tabela_consulta = str(input(' Digite o nome da tabela que deseja alterar um registro: ')).upper()
 
         campo_consulta = str(input(' Digite o campo a ser alterado: '))
@@ -247,7 +268,7 @@ while True:
     # FUNÇÃO DELETE
 
     elif id_exec_funcao_sistema == 4:
-        print('TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
         tabela_consulta = str(input(' Digite o nome da tabela que deseja deletar um registro: ')).upper()
 
         campoCondicao_consulta = str(input(' Digite o campo condicional: '))
@@ -259,7 +280,7 @@ while True:
             cursor.execute(comando)
             con.commit()
 
-        confirmacao = str(input('Você realmente deseja deletar esse registro? (SIM/NAO): ')).upper()
+        confirmacao = str(input(' Você realmente deseja deletar esse registro? (SIM/NAO): ')).upper()
 
         if confirmacao == 'SIM':
 
@@ -267,20 +288,18 @@ while True:
 
         elif confirmacao == 'NAO':
 
-            print('A solicitação foi cancelada!')
-
-            break
+            print(' A solicitação foi cancelada!')
 
     elif id_exec_funcao_sistema == 0:
 
         break
 
     else:
-        print('Você não digitou um número válido, tente novamente!')
+        print(' Você não digitou um número válido, tente novamente!')
 
 ### FINALIZAR CONEXÃO COM O DATABASE ###
 
 if con.is_connected():
     cursor.close()
     con.close()
-    print('A conexão ao MySQL foi encerrada!')
+    print(' A conexão ao MySQL foi encerrada!')
