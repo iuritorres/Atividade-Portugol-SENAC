@@ -54,7 +54,7 @@ def timer3s():
 # Menu de Funções do Sistema
 
 def funcoes_sistema():
-    print('\n','='*68,'\n')
+    print('\n','='*27,'[ CONSULTA ]','='*27,'\n')
     print(' 0 - Finalizar Consultas')
     print(' 1 - Checar registros de uma tabela.')
     print(' 2 - Inserir um registro em uma tabela.')
