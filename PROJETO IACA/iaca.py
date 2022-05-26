@@ -63,47 +63,73 @@ def sistema_login():
 
     while True:
         
-        if id_login == 0:
-
-            # os.system('cls')
+        if id_login == 0: # LOGIN
 
             print('\n','='*28,'[ LOGIN ]','='*28,'\n')
             user_login = str(input(' Digite o seu e-mail ou CPF: '))
             password_login = str(input(' Digite sua senha: '))
             print('\n','='*68,'\n')
 
-            lista_login = ['EMAIL', 'CPF']
+            verificacao = "SELECT EMAIL FROM FUNCIONARIOS WHERE EMAIL ='{}'".format(user_login)
+            cursor.execute(verificacao)
+            resultado = cursor.fetchall()
 
-            for item in lista_login:
+            if len(resultado) != 0:
+                verificacao_campo = 'EMAIL'
 
-                verificacao = "SELECT {} FROM FUNCIONARIOS WHERE {} ='{}'".format(item, item, user_login)
+            verificacao = "SELECT CPF FROM FUNCIONARIOS WHERE CPF ='{}'".format(user_login)
+            cursor.execute(verificacao)
+            resultado = cursor.fetchall()
+
+            if len(resultado) != 0:
+                verificacao_campo = 'CPF'
+
+            else:
+                verificacao_campo = 'conta_doador'
+
+                #aqui
+
+            if verificacao_campo != 'conta_doador':
+
+                verificacao = "SELECT SENHA FROM FUNCIONARIOS WHERE {} ='{}'".format(verificacao_campo, user_login)
+                cursor.execute(verificacao)
+                resultado_funcionarios = cursor.fetchall()
+
+                if password_login in resultado_funcionarios[0]:
+
+                    break
+
+                else:
+                    print(' Você digitou um usuário ou senha inválido, tente novamente.')
+
+            elif verificacao_campo == 'conta_doador':
+
+                verificacao = "SELECT EMAIL FROM DOADORES WHERE EMAIL ='{}'".format(user_login)
                 cursor.execute(verificacao)
                 resultado = cursor.fetchall()
 
-            if len(resultado) != 0:
-
-                for item in lista_login:
-
-                    verificacao = "SELECT SENHA FROM FUNCIONARIOS WHERE {} ='{}'".format(item, user_login)
-                    cursor.execute(verificacao)
-                    resultado = cursor.fetchall()
-                
                 if len(resultado) != 0:
-                    print(' existe')
-                    print(resultado)
+                    verificacao_campo = 'EMAIL'
+
+                verificacao = "SELECT CPF FROM DOADORES WHERE CPF ='{}'".format(user_login)
+                cursor.execute(verificacao)
+                resultado = cursor.fetchall()
+
+                if len(resultado) != 0:
+                    verificacao_campo = 'CPF'
+
+                verificacao = "SELECT SENHA FROM DOADORES WHERE {} = '{}'".format(verificacao_campo, user_login)
+                cursor.execute(verificacao)
+                resultado_doadores = cursor.fetchall()
+
+                if password_login in resultado_doadores[0]:
+
+                    break
 
                 else:
-                    print(' nao existe')
+                    print(' Você digitou um usuário ou senha inválido, tente novamente.')
 
-            else:
-                
-                for item in lista_login:
-
-                    verificacao = "SELECT {} FROM DOADORES WHERE EMAIL OR CPF ='{}'".format(item, user_login)
-                    cursor.execute(verificacao)
-                    resultado = cursor.fetchall()
-
-        elif id_login == 1:
+        elif id_login == 1: # REGISTRO
 
             # Declara o tipo de conta
 
