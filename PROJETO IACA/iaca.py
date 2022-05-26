@@ -32,7 +32,7 @@ if con.is_connected():
     linha = cursor.fetchone()
     print('Conectado ao banco de dados ', linha)
 
-    sleep(2)
+    sleep(1)
 
 
 ### CODIGO ###
@@ -51,6 +51,131 @@ def timer3s():
             print('\n','='*68,'\n')
             sleep(1)
 
+# Sistema De Login
+
+def sistema_login():
+    print('\n','='*27,'[ LOGIN ]','='*27,'\n')
+    print(' 0 - Login')
+    print(' 1 - Registrar')
+    print('\n','='*68,'\n')
+
+    id_login = int(input(' Digite um número que corresponda a função que deseja executar: '))
+
+    while True:
+        
+        if id_login == 0:
+
+            # os.system('cls')
+
+            print('\n','='*28,'[ LOGIN ]','='*28,'\n')
+            user_login = str(input(' Digite o seu e-mail ou CPF: '))
+            password_login = str(input(' Digite sua senha: '))
+            print('\n','='*68,'\n')
+
+            lista_login = ['EMAIL', 'CPF']
+
+            for item in lista_login:
+
+                verificacao = "SELECT {} FROM FUNCIONARIOS WHERE {} ='{}'".format(item, item, user_login)
+                cursor.execute(verificacao)
+                resultado = cursor.fetchall()
+
+            if len(resultado) != 0:
+
+                for item in lista_login:
+
+                    verificacao = "SELECT SENHA FROM FUNCIONARIOS WHERE {} ='{}'".format(item, user_login)
+                    cursor.execute(verificacao)
+                    resultado = cursor.fetchall()
+                
+                if len(resultado) != 0:
+                    print(' existe')
+                    print(resultado)
+
+                else:
+                    print(' nao existe')
+
+            else:
+                
+                for item in lista_login:
+
+                    verificacao = "SELECT {} FROM DOADORES WHERE EMAIL OR CPF ='{}'".format(item, user_login)
+                    cursor.execute(verificacao)
+                    resultado = cursor.fetchall()
+
+        elif id_login == 1:
+
+            # Declara o tipo de conta
+
+            os.system('cls')
+
+            tabela_login = str(input(' Qual o tipo de conta que você deseja registrar (FUNCIONARIO/DOADOR): ')).upper()
+
+            if tabela_login == 'FUNCIONARIO':
+                tabela_consulta = 'FUNCIONARIOS'
+            elif tabela_login == 'DOADOR':
+                tabela_consulta = 'DOADORES'
+
+                # Se for tipo doador
+            
+                if tabela_consulta == 'DOADORES':
+
+                    nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+                    CPF_consulta = int(input(' Digite o CPF (somente números): '))
+                    email_consulta = str(input(' Digite o e-mail: '))
+                    num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+                    dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+                    sexo_consulta = str(input(' Digite o sexo (M/F): '))
+                    nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+                    nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+                    senha_consulta = str(input('Digite sua senha: '))
+
+                    def funcao_insertinto():
+                        comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
+
+                    VALUES
+                            ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
+
+                        cursor.execute(comando)
+                        con.commit()
+
+                    funcao_insertinto()
+                    print(' O Registro foi efetivado com sucesso!')
+
+                    break
+
+                # Se for tipo funcionário
+
+                elif tabela_consulta == 'FUNCIONARIOS':
+
+                    nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+                    CPF_consulta = int(input(' Digite o CPF (somente números): '))
+                    email_consulta = str(input(' Digite o e-mail: '))
+                    num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+                    num_camisa_consulta = str(input(' Digite o tamanho da sua camisa (P/M/PP/MM etc.): '))
+                    dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+                    sexo_consulta = str(input(' Digite o sexo (M/F): '))
+                    nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+                    nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+                    senha_consulta = str(input('Digite sua senha: '))
+
+                    def funcao_insertinto():
+                        comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
+
+                    VALUES
+                            ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{num_camisa_consulta}', '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
+
+                        cursor.execute(comando)
+                        con.commit()
+
+                    funcao_insertinto()
+                    print(' O Registro foi efetivado com sucesso!')
+
+                    break
+
+        else:
+            print(' Você não digitou um número válido, tente novamente!')
+
 # Menu de Funções do Sistema
 
 def funcoes_sistema():
@@ -62,6 +187,9 @@ def funcoes_sistema():
     print(' 4 - Deletar um registro de uma tabela.')
     print('\n','='*68,'\n')
 
+# ACESSO
+
+sistema_login()
 
 # INÍCIO DA CONSULTA
 
@@ -211,12 +339,13 @@ while True:
             sexo_consulta = str(input(' Digite o sexo (M/F): '))
             nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
             nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+            senha_consulta = str(input('Digite sua senha: '))
 
             def funcao_insertinto():
-                comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE)
+                comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
 
             VALUES
-                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}');"""
+                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
 
                 cursor.execute(comando)
                 con.commit()
@@ -234,12 +363,13 @@ while True:
             sexo_consulta = str(input(' Digite o sexo (M/F): '))
             nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
             nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+            senha_consulta = str(input('Digite sua senha: '))
 
             def funcao_insertinto():
-                comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE)
+                comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
 
             VALUES
-                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{num_camisa_consulta}', '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}');"""
+                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{num_camisa_consulta}', '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
 
                 cursor.execute(comando)
                 con.commit()
