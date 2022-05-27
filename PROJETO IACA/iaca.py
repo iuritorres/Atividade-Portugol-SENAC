@@ -37,6 +37,10 @@ if con.is_connected():
 
 ### CODIGO ###
 
+# Lista para definição de tipo de conta
+
+lista_tipo_conta = []
+
 # Timer 3 segundos
 
 def timer3s():
@@ -74,24 +78,22 @@ def sistema_login():
             cursor.execute(verificacao)
             resultado = cursor.fetchall()
 
+            if len(resultado) == 0:
+                verificacao_campo_funcionarios = 'conta_doador'
+
             if len(resultado) != 0:
-                verificacao_campo = 'EMAIL'
+                verificacao_campo_funcionarios = 'EMAIL'
 
             verificacao = "SELECT CPF FROM FUNCIONARIOS WHERE CPF ='{}'".format(user_login)
             cursor.execute(verificacao)
             resultado = cursor.fetchall()
 
             if len(resultado) != 0:
-                verificacao_campo = 'CPF'
+                verificacao_campo_funcionarios = 'CPF'
 
-            else:
-                verificacao_campo = 'conta_doador'
+            if verificacao_campo_funcionarios != 'conta_doador':
 
-                #aqui
-
-            if verificacao_campo != 'conta_doador':
-
-                verificacao = "SELECT SENHA FROM FUNCIONARIOS WHERE {} ='{}'".format(verificacao_campo, user_login)
+                verificacao = "SELECT SENHA FROM FUNCIONARIOS WHERE {} ='{}'".format(verificacao_campo_funcionarios, user_login)
                 cursor.execute(verificacao)
                 resultado_funcionarios = cursor.fetchall()
 
@@ -102,23 +104,23 @@ def sistema_login():
                 else:
                     print(' Você digitou um usuário ou senha inválido, tente novamente.')
 
-            elif verificacao_campo == 'conta_doador':
+            elif verificacao_campo_funcionarios == 'conta_doador':
 
                 verificacao = "SELECT EMAIL FROM DOADORES WHERE EMAIL ='{}'".format(user_login)
                 cursor.execute(verificacao)
                 resultado = cursor.fetchall()
 
                 if len(resultado) != 0:
-                    verificacao_campo = 'EMAIL'
+                    verificacao_campo_doador = 'EMAIL'
 
                 verificacao = "SELECT CPF FROM DOADORES WHERE CPF ='{}'".format(user_login)
                 cursor.execute(verificacao)
                 resultado = cursor.fetchall()
 
                 if len(resultado) != 0:
-                    verificacao_campo = 'CPF'
+                    verificacao_campo_doador = 'CPF'
 
-                verificacao = "SELECT SENHA FROM DOADORES WHERE {} = '{}'".format(verificacao_campo, user_login)
+                verificacao = "SELECT SENHA FROM DOADORES WHERE {} = '{}'".format(verificacao_campo_doador, user_login)
                 cursor.execute(verificacao)
                 resultado_doadores = cursor.fetchall()
 
@@ -201,6 +203,14 @@ def sistema_login():
 
         else:
             print(' Você não digitou um número válido, tente novamente!')
+
+    if verificacao_campo_funcionarios == 'EMAIL':
+        lista_tipo_conta.append('conta_funcionario')
+    elif verificacao_campo_funcionarios == 'CPF':
+        lista_tipo_conta.append('conta_funcionario')
+    elif verificacao_campo_funcionarios == 'conta_doador':
+        lista_tipo_conta.append('conta_doador')
+
 
 # Menu de Funções do Sistema
 
@@ -312,139 +322,157 @@ while True:
     # FUNÇÃO INSERT INTO
 
     elif id_exec_funcao_sistema == 2:
-        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input(' Digite o nome da tabela que deseja inserir um registro: ')).upper()
 
-        if tabela_consulta == 'DOACOES':
+        if 'conta_doador' == lista_tipo_conta[0]:
+            print(' Você não tem acesso a essa funcionalidade, por favor digite outro número.')
 
-            print('\n [REGISTRO]:')
+        else:
 
-            id_doador_consulta = int(input(' Digite o ID do doador: '))
+            print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+            tabela_consulta = str(input(' Digite o nome da tabela que deseja inserir um registro: ')).upper()
 
-            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta}')
+            if tabela_consulta == 'DOACOES':
 
-            data_doacao_consulta = str(input(' Digite a data atual no formato AAAA-MM-DD (inclua os "-"): '))
+                print('\n [REGISTRO]:')
 
-            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta}')
+                id_doador_consulta = int(input(' Digite o ID do doador: '))
 
-            tipo_consulta = str(input(' Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): ')).upper()
+                print(f'\n [REGISTRO]: \n ID: {id_doador_consulta}')
 
-            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta}')
+                data_doacao_consulta = str(input(' Digite a data atual no formato AAAA-MM-DD (inclua os "-"): '))
 
-            forma_pagamento_consulta = str(input(' Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): ')).upper()
+                print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta}')
 
-            print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta} \n FORMA DE PAGAMENTO: {forma_pagamento_consulta}')
+                tipo_consulta = str(input(' Digite o tipo de doação (ROUPA/ALIMENTO/DINHEIRO/HIGIENE): ')).upper()
 
-            def funcao_insertinto():
-                comando = f"""INSERT INTO DOACOES (ID_DOADOR, DATA_DOACAO, TIPO, FORMA_PAGAMENTO)
+                print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta}')
 
-            VALUES
-                    ({id_doador_consulta}, '{data_doacao_consulta}', '{tipo_consulta}', '{forma_pagamento_consulta}');"""
+                forma_pagamento_consulta = str(input(' Digite a forma de pagamento (DÉBITO/CRÉDITO/BOLETO/PIX/TRANSFERÊNCIA/DOAÇÃO): ')).upper()
 
-                cursor.execute(comando)
-                con.commit()
+                print(f'\n [REGISTRO]: \n ID: {id_doador_consulta} \n DATA DA DOAÇÃO: {data_doacao_consulta} \n TIPO DE DOAÇÃO: {tipo_consulta} \n FORMA DE PAGAMENTO: {forma_pagamento_consulta}')
 
-            confirmacao = str(input(' Você realmente deseja inserir esse registro? (SIM/NAO): ')).upper()
+                def funcao_insertinto():
+                    comando = f"""INSERT INTO DOACOES (ID_DOADOR, DATA_DOACAO, TIPO, FORMA_PAGAMENTO)
 
-            if confirmacao == 'SIM':
+                VALUES
+                        ({id_doador_consulta}, '{data_doacao_consulta}', '{tipo_consulta}', '{forma_pagamento_consulta}');"""
+
+                    cursor.execute(comando)
+                    con.commit()
+
+                confirmacao = str(input(' Você realmente deseja inserir esse registro? (SIM/NAO): ')).upper()
+
+                if confirmacao == 'SIM':
+
+                    funcao_insertinto()
+
+                elif confirmacao == 'NAO':
+
+                    print(' A solicitação foi cancelada!')
+
+
+            elif tabela_consulta == 'DOADORES':
+
+                nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+                CPF_consulta = int(input(' Digite o CPF (somente números): '))
+                email_consulta = str(input(' Digite o e-mail: '))
+                num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+                dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+                sexo_consulta = str(input(' Digite o sexo (M/F): '))
+                nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+                nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+                senha_consulta = str(input('Digite sua senha: '))
+
+                def funcao_insertinto():
+                    comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
+
+                VALUES
+                        ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
+
+                    cursor.execute(comando)
+                    con.commit()
 
                 funcao_insertinto()
 
-            elif confirmacao == 'NAO':
+            elif tabela_consulta == 'FUNCIONARIOS':
 
-                print(' A solicitação foi cancelada!')
+                nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
+                CPF_consulta = int(input(' Digite o CPF (somente números): '))
+                email_consulta = str(input(' Digite o e-mail: '))
+                num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
+                num_camisa_consulta = str(input(' Digite o tamanho da sua camisa (P/M/PP/MM etc.): '))
+                dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
+                sexo_consulta = str(input(' Digite o sexo (M/F): '))
+                nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
+                nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
+                senha_consulta = str(input('Digite sua senha: '))
 
+                def funcao_insertinto():
+                    comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
 
-        elif tabela_consulta == 'DOADORES':
+                VALUES
+                        ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{num_camisa_consulta}', '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
 
-            nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
-            CPF_consulta = int(input(' Digite o CPF (somente números): '))
-            email_consulta = str(input(' Digite o e-mail: '))
-            num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
-            dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
-            sexo_consulta = str(input(' Digite o sexo (M/F): '))
-            nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
-            nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
-            senha_consulta = str(input('Digite sua senha: '))
+                    cursor.execute(comando)
+                    con.commit()
 
-            def funcao_insertinto():
-                comando = f"""INSERT INTO DOADORES (NOME, CPF, EMAIL, NUMERO, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
-
-            VALUES
-                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
-
-                cursor.execute(comando)
-                con.commit()
-
-            funcao_insertinto()
-
-        elif tabela_consulta == 'FUNCIONARIOS':
-
-            nome_consulta = str(input(' Digite o nome completo para o novo cadastro: ')).upper()
-            CPF_consulta = int(input(' Digite o CPF (somente números): '))
-            email_consulta = str(input(' Digite o e-mail: '))
-            num_telefone_consulta = int(input(' Digite o número de telefone (DDD + número sem o 9): '))
-            num_camisa_consulta = str(input(' Digite o tamanho da sua camisa (P/M/PP/MM etc.): '))
-            dataNasc_consulta = str(input(' Digite a data de nascimento no formato AAAA-MM-DD (inclua os "-"): '))
-            sexo_consulta = str(input(' Digite o sexo (M/F): '))
-            nomePai_consulta = str(input(' Digite o nome completo do Pai: ')).upper()
-            nomeMae_consulta = str(input(' Digite o nome completo da Mae: ')).upper()
-            senha_consulta = str(input('Digite sua senha: '))
-
-            def funcao_insertinto():
-                comando = f"""INSERT INTO FUNCIONARIOS (NOME, CPF, EMAIL, NUMERO, N_CAMISA, DATA_NASC, SEXO, NOME_PAI, NOME_MAE, SENHA)
-
-            VALUES
-                    ('{nome_consulta}', {CPF_consulta}, '{email_consulta}', {num_telefone_consulta}, '{num_camisa_consulta}', '{dataNasc_consulta}', '{sexo_consulta}', '{nomePai_consulta}', '{nomeMae_consulta}', '{senha_consulta}');"""
-
-                cursor.execute(comando)
-                con.commit()
-
-            funcao_insertinto()
+                funcao_insertinto()
 
     # FUNÇÃO UPDATE
 
     elif id_exec_funcao_sistema == 3:
-        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input(' Digite o nome da tabela que deseja alterar um registro: ')).upper()
 
-        campo_consulta = str(input(' Digite o campo a ser alterado: '))
-        novaInfo_consulta = input(' Digite a nova informação do registro: ')
+        if 'conta_doador' == lista_tipo_conta[0]:
+            print(' Você não tem acesso a essa funcionalidade, por favor digite outro número.')
 
-        campoCondicao_consulta = str(input(' Digite o campo condicional: '))
-        valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
+        else:
 
-        def funcao_update():
-            comando = f'UPDATE {tabela_consulta} SET {campo_consulta} = "{novaInfo_consulta}" WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}";'
-            cursor.execute(comando)
-            con.commit()
+            print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+            tabela_consulta = str(input(' Digite o nome da tabela que deseja alterar um registro: ')).upper()
 
-        funcao_update()
+            campo_consulta = str(input(' Digite o campo a ser alterado: '))
+            novaInfo_consulta = input(' Digite a nova informação do registro: ')
+
+            campoCondicao_consulta = str(input(' Digite o campo condicional: '))
+            valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
+
+            def funcao_update():
+                comando = f'UPDATE {tabela_consulta} SET {campo_consulta} = "{novaInfo_consulta}" WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}";'
+                cursor.execute(comando)
+                con.commit()
+
+            funcao_update()
 
     # FUNÇÃO DELETE
 
     elif id_exec_funcao_sistema == 4:
-        print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
-        tabela_consulta = str(input(' Digite o nome da tabela que deseja deletar um registro: ')).upper()
 
-        campoCondicao_consulta = str(input(' Digite o campo condicional: '))
-        valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
+        if 'conta_doador' == lista_tipo_conta[0]:
+            print(' Você não tem acesso a essa funcionalidade, por favor digite outro número.')
 
-        def funcao_delete():
+        else:
 
-            comando = f'DELETE FROM {tabela_consulta} WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}"'
-            cursor.execute(comando)
-            con.commit()
+            print(' TABELAS: DOACOES, DOADORES, FUNCIONARIOS')
+            tabela_consulta = str(input(' Digite o nome da tabela que deseja deletar um registro: ')).upper()
 
-        confirmacao = str(input(' Você realmente deseja deletar esse registro? (SIM/NAO): ')).upper()
+            campoCondicao_consulta = str(input(' Digite o campo condicional: '))
+            valorCondicao_consulta = input(' Digite o valor condicional do campo definido acima: ')
 
-        if confirmacao == 'SIM':
+            def funcao_delete():
 
-            funcao_delete()
+                comando = f'DELETE FROM {tabela_consulta} WHERE {campoCondicao_consulta} = "{valorCondicao_consulta}"'
+                cursor.execute(comando)
+                con.commit()
 
-        elif confirmacao == 'NAO':
+            confirmacao = str(input(' Você realmente deseja deletar esse registro? (SIM/NAO): ')).upper()
 
-            print(' A solicitação foi cancelada!')
+            if confirmacao == 'SIM':
+
+                funcao_delete()
+
+            elif confirmacao == 'NAO':
+
+                print(' A solicitação foi cancelada!')
 
     elif id_exec_funcao_sistema == 0:
 
