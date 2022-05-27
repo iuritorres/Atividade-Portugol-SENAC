@@ -58,7 +58,7 @@ def timer3s():
 # Sistema De Login
 
 def sistema_login():
-    print('\n','='*27,'[ LOGIN ]','='*27,'\n')
+    print('\n','='*28,'[ LOGIN ]','='*28,'\n')
     print(' 0 - Login')
     print(' 1 - Registrar')
     print('\n','='*68,'\n')
