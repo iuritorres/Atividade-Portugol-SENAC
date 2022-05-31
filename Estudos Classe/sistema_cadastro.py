@@ -122,7 +122,7 @@ while True:
 
     elif id_exec_funcao_sistema == 3:
 
-        if tipo_conta == Permissoes.conta_funcionario:
+        if tipo_conta == Permissoes.conta_funcionario or tipo_conta == Permissoes.conta_cliente:
             print(' Você não tem acesso a essa função.')
 
         else:
