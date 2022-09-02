@@ -1,7 +1,7 @@
 ###################################################################################################################
 #              [ DEVS ]               #          [ PROJETO IACA ]           #          [ POPSOFTWARES ]           #
 #                                     #                                     #                                     #
-#   [ IURI TORRES & CAIO JONATHAN ]   #    [ Instituição Filantrópica ]     #   [ Nossa paixão,  seu negócio ]    #
+#           [ IURI TORRES ]           #    [ Instituição Filantrópica ]     #   [ Nossa paixão,  seu negócio ]    #
 ###################################################################################################################
 
 ### IMPORTAÇÕES ###
