@@ -1,4 +1,5 @@
 class Permissoes:
+    
     def __init__(self, tipo_conta):
         self.tipo_conta = tipo_conta
 
@@ -14,4 +15,3 @@ class Permissoes:
 
     def conta_developer(self):
         self.tipo_conta = 'conta_developer'
-
