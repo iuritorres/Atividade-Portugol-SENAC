@@ -1,3 +1,5 @@
+# DEVS: IURI TORRES | RAFAEL LUIS #
+
 # imports
 import os
 import sys
