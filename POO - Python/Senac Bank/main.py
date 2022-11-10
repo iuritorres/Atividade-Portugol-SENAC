@@ -157,7 +157,7 @@ class Account:
             print(f"| {accountOwner:<49}|")
             print(f"| {accountBalance:<49}|")
             Tools.divider()    
-            backToMenu = input(f'|{back:<50}|')
+            backToMenu = input(f'{back:<50}')
 
             if backToMenu != None:
                 return True
