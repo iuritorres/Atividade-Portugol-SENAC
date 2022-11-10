@@ -266,12 +266,22 @@ class SenacBankSystem:
                     if SenacBankSystem.login() == True:
                         SenacBankSystem.init(True)
                         break
+
                 # Create Account
                 elif chosenOption == '2':
                     Account.createAccount()
+
                 # Exit System
                 elif chosenOption == '3':
                     SenacBankSystem.exit()
+                    
+                # Not existing function
+                else:
+                    os.system('cls')
+                    Tools.divider()
+                    print(f"{'|':<} {'Digite uma opção válida!':^48} {'|':>}")
+                    Tools.divider()
+
 
         # Starts Logged User Menu
         if loggedStatus == True:
@@ -315,6 +325,13 @@ class SenacBankSystem:
                 # Exit System
                 elif chosenOption == '4':
                     SenacBankSystem.exit()
+
+                # Not existing function
+                else:
+                    os.system('cls')
+                    Tools.divider()
+                    print(f"{'|':<} {'Digite uma opção válida!':^48} {'|':>}")
+                    Tools.divider()
 
 
     ## Call an Account login
