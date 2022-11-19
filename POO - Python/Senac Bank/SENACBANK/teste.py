@@ -3,9 +3,9 @@ import json
 os.system('cls')
     
     
-with open(".\SENACBANK\users.json", encoding = 'utf-8') as testeJson:
-    print(testeJson.read())
+with open("./SENACBANK/users.json", encoding= 'utf-8', mode="r") as testeJson:
+    my_data = json.loads(testeJson.read())
     
-dados = json.loads(testeJson)
 
-print(dados)
+print(my_data)
+print(type(my_data))
