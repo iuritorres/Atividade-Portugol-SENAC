@@ -1,0 +1,34 @@
+{
+    "users": {
+        "575": {
+            "username": "Iuri Barbosa Torres",
+            "password": 5555,
+            "checkingBalance": 0,
+            "savingsBalance": 0
+        },
+        "912": {
+            "username": "Rafael Luis Barreto Silva",
+            "password": 1234,
+            "checkingBalance": 0,
+            "savingsBalance": 0
+        },
+        "532": {
+            "username": "Rayanne Melissa Feitosa Cavalcanti",
+            "password": 8765,
+            "checkingBalance": 0,
+            "savingsBalance": 0 
+        },
+        "132": {
+            "username": "Diana Rafaela Silva de Castro",
+            "password": 6543,
+            "checkingBalance": 0,
+            "savingsBalance": 0
+        },
+        "442": {
+            "username": "João Vitor Souza da Silva",
+            "password": 4341,
+            "checkingBalance": 0,
+            "savingsBalance": 0
+        }
+    }
+}

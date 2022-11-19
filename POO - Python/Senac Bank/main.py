@@ -5,7 +5,7 @@ import os
 import sys
 from time import sleep
 from Account import Account
-from Tools import Tools
+from SENACBANK.Tools import Tools
 from BancoDeDados import BancoDeDados
 
 Account = Account

@@ -5,7 +5,7 @@ class Tools:
     def divider():
         print('+'+'-'*50+'+')
 
-    def showMensage (mensagem):
+    def showMessage (mensagem):
         os.system('cls')
         print('+'+'-'*50+'+')
         print(f"|{mensagem:^50}|")

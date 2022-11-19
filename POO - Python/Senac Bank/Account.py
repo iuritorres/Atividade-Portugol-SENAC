@@ -1,4 +1,4 @@
-from Tools import Tools
+from SENACBANK.Tools import Tools
 from BancoDeDados import BancoDeDados
 from random import randint
 import os
@@ -136,7 +136,7 @@ class Account:
     def deposit():
         os.system('cls') # clear console
         while True:
-
+ 
             # Get current balance
             currentBalance = BD.getUser()[userIndex].get('balance')
 
