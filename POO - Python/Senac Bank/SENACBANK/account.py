@@ -52,9 +52,11 @@ class SavingsAccount(CheckingAccount):
         def setSavingsBalance(self, operator, value):
             if operator == '+':
                 self.savingsBalance += value
-            
+                BD.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
+                
             elif operator == '-' :
                 self.savingsBalance -= value
+                BD.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
             
             else:
                 print('Operador inválido.')
