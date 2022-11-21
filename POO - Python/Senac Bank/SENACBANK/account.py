@@ -1,17 +1,17 @@
 # Checking Account
 class CheckingAccount():
-    def __init__(self) -> None:
-        self.username = ''
-        self.password = ''
-        self.accountNumber = 0
-        self.checkingBalance = 0
-        
+    def __init__(self, username, password, accountNumber, checkingBalance) -> None:
+        self.username = username
+        self.password = password
+        self.accountNumber = accountNumber
+        self.checkingBalance = checkingBalance
+
     # Get Checking Balance Account
-    def getChekingBalance(self):
+    def getCheckingBalance(self):
         return self.checkingBalance
     
     # Set Checking Balance Account
-    def setChekingBalance(self, operator, value):
+    def setCheckingBalance(self, operator, value):
         if operator == '+':
             self.checkingBalance += value
             
@@ -36,10 +36,10 @@ class CheckingAccount():
 
 # Savings Account
 class SavingsAccount(CheckingAccount):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, username, password, accountNumber, checkingBalance, savingsBalance) -> None:
+        super().__init__(username, password, accountNumber, checkingBalance)
 
-        self.savingsBalance = 0
+        self.savingsBalance = savingsBalance
         
         # Get Savings Balance Account
         def getSavingsBalance(self):

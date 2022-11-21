@@ -3,31 +3,31 @@
         "575": {
             "username": "Iuri Barbosa Torres",
             "password": 5555,
-            "checkingBalance": 0,
+            "checkingBalance": 780,
             "savingsBalance": 0
         },
         "912": {
             "username": "Rafael Luis Barreto Silva",
             "password": 1234,
-            "checkingBalance": 0,
+            "checkingBalance": 500,
             "savingsBalance": 0
         },
         "532": {
             "username": "Rayanne Melissa Feitosa Cavalcanti",
             "password": 8765,
-            "checkingBalance": 0,
+            "checkingBalance": 150,
             "savingsBalance": 0
         },
         "132": {
             "username": "Diana Rafaela Silva de Castro",
             "password": 6543,
-            "checkingBalance": 0,
+            "checkingBalance": 2000,
             "savingsBalance": 0
         },
         "442": {
             "username": "Joao Vitor Souza da Silva",
             "password": 4341,
-            "checkingBalance": 0,
+            "checkingBalance": 1500,
             "savingsBalance": 0
         },
         "001": {
@@ -46,6 +46,12 @@
             "username": "Irineu Fonseca Melorego Pinto",
             "password": 1234,
             "checkingBalance": 999,
+            "savingsBalance": 0
+        },
+        "379": {
+            "username": "Joyce Muniz Dos Santos",
+            "password": 1212,
+            "checkingBalance": 500,
             "savingsBalance": 0
         }
     }

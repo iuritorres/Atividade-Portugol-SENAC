@@ -203,5 +203,5 @@ class Account:
         pass
 
 
-class AccountPoupansa:
+class AccountPoupanca:
     pass

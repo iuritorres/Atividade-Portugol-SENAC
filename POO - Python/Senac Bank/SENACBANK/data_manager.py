@@ -20,7 +20,7 @@ class DataManager:
             return user
             
         except KeyError:
-            return "Usuario não existe"
+            return "Usuario inexistente"
 
     # insert new user 
     def setUser(idNewUser, Object):
