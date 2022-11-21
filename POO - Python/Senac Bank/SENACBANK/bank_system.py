@@ -259,7 +259,39 @@ class BankSystem:
                 
                 # Apply
                 elif chosenOption == '3':
-                    pass
+                    loggedUser.setCheckingBalance('-', valueSavings)
+                    loggedUser.setSavingsBalance('+', valueSavings)
+                    
+                    while True:
+                        try:
+                            tools.showMessage('Aplicar:')
+                            valueSavings = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja transferir: R$'))
+                            
+                            if valueSavings == 0:
+                                tools.showMessage('Operação cancelada!')
+                                sleep(2)
+                                break
+                            
+                            elif valueSavings < 0:
+                                tools.showMessage('Por favor, insira um valor maior que zero.')
+                                sleep(2)
+
+                            else:
+                                # Getting current checking balance and seting a new one   
+                                currentSavingsBalance = loggedUser.getSavingsBalance()
+                                
+                                
+                                loggedUser.setSavingsBalance('+', withdrawValue)
+
+                                tools.validateTimer('Depositando')
+                                tools.showMessage('O dinheiro foi depositado!')
+                                sleep(3)
+                                break
+                            
+                        except ValueError:
+                            tools.showMessage('Por favor, insira um número válido.')
+                            sleep(2)
+                    
 
                 # Redeem
                 elif chosenOption == '4':
