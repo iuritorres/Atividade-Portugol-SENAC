@@ -1,6 +1,6 @@
 from data_manager import DataManager
 
-BD = DataManager
+database = DataManager
 
 # Checking Account
 class CheckingAccount():
@@ -20,14 +20,14 @@ class CheckingAccount():
             #Adding current balance with new valueAdding current balance with new value
             self.checkingBalance += value
             #Update checking Balance from currente user
-            BD.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
+            database.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
 
             
         elif operator == '-' :
             #Subtracting current balance with new value
             self.checkingBalance -= value
             #Update checking Balance from currente user
-            BD.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
+            database.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
             
         else:
             print('Operador inválido.')
@@ -52,11 +52,11 @@ class SavingsAccount(CheckingAccount):
         def setSavingsBalance(self, operator, value):
             if operator == '+':
                 self.savingsBalance += value
-                BD.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
+                database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
                 
             elif operator == '-' :
                 self.savingsBalance -= value
-                BD.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
+                database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
             
             else:
                 print('Operador inválido.')
