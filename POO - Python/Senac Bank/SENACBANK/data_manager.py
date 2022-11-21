@@ -15,10 +15,10 @@ class DataManager:
     def getUser(idUser):
         try:
             my_data = DataManager.getAllUsers()
-            
             user = my_data["users"][str(idUser)]
             
             return user
+            
         except KeyError:
             return "Usuario não existe"
 

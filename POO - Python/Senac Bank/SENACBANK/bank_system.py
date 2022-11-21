@@ -6,15 +6,17 @@ from random import randint
 
 from system_tools import Tools
 from data_manager import DataManager
+from account import CheckingAccount, SavingsAccount
 
 # instances
 tools = Tools
 database = DataManager
 
+
 class BankSystem:
 
     ## Starts System
-    def init(loggedStatus=False):
+    def init(loggedStatus = False):
         os.system('cls') # clear console
 
         # LOGGED OFF MENU
@@ -37,7 +39,20 @@ class BankSystem:
                 
                 # Login Option
                 if chosenOption == '1':
-                    pass
+                    
+                    # Login Validation
+                    while True:
+                        
+                        idLogin = str(input('Informe o ID da conta: '))
+                        passwordLogin = input('Informe a senha da conta: ')
+                        userDB = database.getUser(idLogin)
+                        
+                        if type(userDB) == object:
+                            print(userDB)
+                            
+                        else:
+                            print(userDB)
+                        
 
                 # Create Account
                 elif chosenOption == '2':
@@ -136,8 +151,25 @@ class BankSystem:
 
                 # Withdraw
                 if chosenOption == '1':
-                    pass
-
+                    
+                    while True:
+                        try:
+                            withdrawValue = int(input('Insira o valor que deseja retirar (Digite 0 para cancelar a operação.): R$'))
+                            
+                            if withdrawValue == 0:
+                                break
+                            
+                            elif withdrawValue < 0:
+                                print('Digite um número válido para a operação.')
+                            
+                        except ValueError:
+                            print('É permitido apenas números no campo de valor.')
+                            
+                        
+                        finally:
+                        # Get and Set CheckingAccount here
+                            pass
+                
                 # Deposit
                 elif chosenOption == '2':
                     pass
@@ -183,7 +215,6 @@ class BankSystem:
             print(f'|{user_data:<50}|')
 
         tools.divider()
-
 
     ## Quit system
     def exit():
