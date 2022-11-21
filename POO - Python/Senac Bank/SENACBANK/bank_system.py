@@ -105,7 +105,9 @@ class BankSystem:
                             print(f'-> Senha: {password}\n')
 
                             if len(str(password)) != 4:
-                                print('Sua senha não tem 4 dígitos')
+                                tools.showMessage('Sua senha não tem 4 dígitos')
+                                print(f'-> Nome: {name}\n')
+                                sleep(2)
                             else:
                                 break
 
