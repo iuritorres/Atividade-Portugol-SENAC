@@ -211,15 +211,15 @@ class BankSystem:
                                 sleep(2)
 
                             elif withdrawValue > currentChekingBalance:
-                                tools.showMessage('Você não possui esse saldo na conta!')
+                                tools.showMessage('Saldo insuficiente!')
                                 sleep(2)
 
                             else:
                                 # Setting new value   
                                 loggedUser.setCheckingBalance('-', withdrawValue)
-
+                                
                                 tools.validateTimer('Sacando')
-                                tools.showMessage('O dinheiro foi retirado da conta!')
+                                tools.showMessage('O saque realizado com sucesso!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
                                 sleep(3)
                                 break
                             
@@ -234,24 +234,22 @@ class BankSystem:
                     while True:
                         try:
                             tools.showMessage('Depósito:')
-                            withdrawValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja depositar: R$'))
+                            depositValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja depositar: R$'))
                             
-                            if withdrawValue == 0:
+                            if depositValue == 0:
                                 tools.showMessage('Operação cancelada!')
                                 sleep(2)
                                 break
                             
-                            elif withdrawValue < 0:
+                            elif depositValue < 0:
                                 tools.showMessage('Por favor, insira um valor maior que zero.')
                                 sleep(2)
 
                             else:
-                                # Getting current checking balance and seting a new one   
-                                currentChekingBalance = loggedUser.getCheckingBalance()
-                                loggedUser.setCheckingBalance('+', withdrawValue)
+                                loggedUser.setCheckingBalance('+', depositValue)
 
                                 tools.validateTimer('Depositando')
-                                tools.showMessage('O dinheiro foi depositado!')
+                                tools.showMessage('O dinheiro foi depositado!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
                                 sleep(3)
                                 break
                             
@@ -328,7 +326,7 @@ class BankSystem:
         newLine =  '\n' + f"{'|':<51}" + f"{'|':>}"
         printAccountNumber = f'-> Número da conta: {userID}'
 
-        user_keys = list(userData.keys())
+        user_keys = ['Nome', 'Senha', 'Saldo conta corrente', 'Saldo conta poupança' ]
         user_values = list(userData.values())
 
         tools.divider()
