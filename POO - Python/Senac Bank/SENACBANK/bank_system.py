@@ -257,8 +257,6 @@ class BankSystem:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
                 
-                    loggedUser.setCheckingBalance('-', valueSavings)
-                    loggedUser.setSavingsBalance('+', valueSavings)
                 # Apply
                 elif chosenOption == '3':
                     
@@ -301,7 +299,11 @@ class BankSystem:
 
                 # Redeem
                 elif chosenOption == '4':
-                    pass
+                    try:
+                        pass
+                    except ValueError:
+                        tools.showMessage('Por favor, insira um número válido.')
+                        sleep(2)
 
                 # Show Data
                 elif chosenOption == '5':
