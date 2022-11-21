@@ -294,11 +294,8 @@ class BankSystem:
                                     break
 
                                 else:
-                                    print('Você não possui saldo suficiente para realizar essa transferência.')
-                                
-                                
-                                # loggedUser.setSavingsBalance('+', withdrawValue)
-
+                                    tools.showMessage('Você não possui saldo suficiente')
+                                    sleep(2)
                             
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
