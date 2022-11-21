@@ -1,4 +1,4 @@
-from SENACBANK.Tools import Tools
+from SENACBANK.system_tools import Tools
 from BancoDeDados import BancoDeDados
 from random import randint
 import os

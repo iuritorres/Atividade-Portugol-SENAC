@@ -5,14 +5,10 @@ import os
 import sys
 from time import sleep
 from Account import Account
-from SENACBANK.Tools import Tools
-from BancoDeDados import BancoDeDados
+from SENACBANK.system_tools import Tools
 
 Account = Account
 tools = Tools
-BD = BancoDeDados
-
-
 
 # Main - SenacBankSystem
 class SenacBankSystem:

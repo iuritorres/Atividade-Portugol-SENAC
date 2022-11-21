@@ -16,7 +16,7 @@
             "username": "Rayanne Melissa Feitosa Cavalcanti",
             "password": 8765,
             "checkingBalance": 0,
-            "savingsBalance": 0 
+            "savingsBalance": 0
         },
         "132": {
             "username": "Diana Rafaela Silva de Castro",
@@ -25,9 +25,27 @@
             "savingsBalance": 0
         },
         "442": {
-            "username": "João Vitor Souza da Silva",
+            "username": "Joao Vitor Souza da Silva",
             "password": 4341,
             "checkingBalance": 0,
+            "savingsBalance": 0
+        },
+        "001": {
+            "username": "Lucas Oliveira",
+            "password": 4341,
+            "checkingBalance": 1502,
+            "savingsBalance": 0
+        },
+        "174": {
+            "username": "Rafael Goncalves Luis Barreto",
+            "password": 7989,
+            "checkingBalance": 1000,
+            "savingsBalance": 0
+        },
+        "664": {
+            "username": "Irineu Fonseca Melorego Pinto",
+            "password": 1234,
+            "checkingBalance": 999,
             "savingsBalance": 0
         }
     }
