@@ -25,13 +25,13 @@
             "savingsBalance": 0
         },
         "442": {
-            "username": "Joao Vitor Souza da Silva",
+            "username": "Jo\u00e3o Vitor Souza da Silva",
             "password": 4341,
             "checkingBalance": 1500,
             "savingsBalance": 0
         },
         "001": {
-            "username": "Lucas Oliveira",
+            "username": "Lucas Oliveira da Silva",
             "password": 4341,
             "checkingBalance": 1502,
             "savingsBalance": 0
@@ -52,6 +52,12 @@
             "username": "Joyce Muniz Dos Santos",
             "password": 1212,
             "checkingBalance": 500,
+            "savingsBalance": 0
+        },
+        "424": {
+            "username": "Jos\u00e9 Soares Da Silva Lima",
+            "password": 1234,
+            "checkingBalance": 7120,
             "savingsBalance": 0
         }
     }

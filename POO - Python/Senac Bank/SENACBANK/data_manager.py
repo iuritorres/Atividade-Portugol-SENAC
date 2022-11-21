@@ -6,8 +6,13 @@ class DataManager:
 
     # return all users of database
     def getAllUsers():
-        with open("./SENACBANK/users.json", encoding= 'utf-8', mode="r") as testeJson:
-            my_data = json.loads(testeJson.read())
+        try:
+            with open("./SENACBANK/users.json", encoding= 'utf-8', mode="r") as testeJson:
+                my_data = json.loads(testeJson.read())
+
+        except FileNotFoundError:
+             with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding= 'utf-8', mode="r") as testeJson:
+                my_data = json.loads(testeJson.read())
         
         return my_data
 
@@ -36,21 +41,35 @@ class DataManager:
 
     # insert new user 
     def setUser(idNewUser, Object):
-        with open("./SENACBANK/users.json", encoding='utf-8', mode="r+") as jsonFile:
+        try:
+            with open("./SENACBANK/users.json", encoding='utf-8', mode="r+") as jsonFile:
+                fileData = json.load(jsonFile)              # load file in fileData
+                fileData['users'][idNewUser] = Object       # set new user in fileData
+                jsonFile.seek(0)                            # set handle position at 0
+                json.dump(fileData, jsonFile, indent=4)     # dumps back the new dataBase to jsonFile
 
-            fileData = json.load(jsonFile)              # load file in fileData
-            fileData['users'][idNewUser] = Object       # set new user in fileData
-            jsonFile.seek(0)                            # set handle position at 0
-            json.dump(fileData, jsonFile, indent=4)     # dumps back the new dataBase to jsonFile
+        except FileNotFoundError:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding='utf-8', mode="r+") as jsonFile:
+                fileData = json.load(jsonFile)              # load file in fileData
+                fileData['users'][idNewUser] = Object       # set new user in fileData
+                jsonFile.seek(0)                            # set handle position at 0
+                json.dump(fileData, jsonFile, indent=4)     # dumps back the new dataBase to jsonFile
     
     # insert update property from user 
     def setUpdateUserProperty(idUser, UpdateProperty, valueUpdateProperty):
         try:
             with open("./SENACBANK/users.json", encoding='utf-8', mode="r+") as jsonFile:
-
                 fileData = json.load(jsonFile)                                              # load file in fileData
                 fileData['users'][str(idUser)][str(UpdateProperty)] = valueUpdateProperty   # set update property from user in fileData
-                jsonFile.seek(0)                                                          # set handle position at 0
-                json.dump(fileData, jsonFile, indent=4)                                   # dumps back the new dataBase to jsonFile
+                jsonFile.seek(0)                                                            # set handle position at 0
+                json.dump(fileData, jsonFile, indent=4)                                     # dumps back the new dataBase to jsonFile
+
+        except FileNotFoundError:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding='utf-8', mode="r+") as jsonFile:
+                fileData = json.load(jsonFile)                                              # load file in fileData
+                fileData['users'][str(idUser)][str(UpdateProperty)] = valueUpdateProperty   # set update property from user in fileData
+                jsonFile.seek(0)                                                            # set handle position at 0
+                json.dump(fileData, jsonFile, indent=4)  
+
         except KeyError:
             return "Usuario ou propriedade inexistente"
