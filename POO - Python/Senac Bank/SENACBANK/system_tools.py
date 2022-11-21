@@ -6,11 +6,12 @@ class Tools:
     def divider():
         print('+'+'-'*50+'+')
 
-    # Message Printee
-    def showMessage (mensagem):
+    # Message Printer
+    def showMessage (*mensagem):
         os.system('cls')
         print('+'+'-'*50+'+')
-        print(f"|{mensagem:^50}|")
+        for msg in mensagem:
+            print(f"|{msg:^50}|")
         print('+'+'-'*50+'+')
 
     def validateTimer(operacao):
