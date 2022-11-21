@@ -298,7 +298,6 @@ class BankSystem:
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
-                    
 
                 # Redeem
                 elif chosenOption == '4':
