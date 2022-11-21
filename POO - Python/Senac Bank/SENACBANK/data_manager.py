@@ -11,7 +11,7 @@ class DataManager:
                 my_data = json.loads(testeJson.read())
 
         except FileNotFoundError:
-             with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding= 'utf-8', mode="r") as testeJson:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding= 'utf-8', mode="r") as testeJson:
                 my_data = json.loads(testeJson.read())
         
         return my_data

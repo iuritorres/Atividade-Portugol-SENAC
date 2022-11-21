@@ -44,22 +44,23 @@ class SavingsAccount(CheckingAccount):
 
         self.savingsBalance = savingsBalance
         
-        # Get Savings Balance Account
-        def getSavingsBalance(self):
-            return self.savingsBalance
-        
-        # Set Saving Balance Account
-        def setSavingsBalance(self, operator, value):
-            if operator == '+':
-                self.savingsBalance += value
-                database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
-                
-            elif operator == '-' :
-                self.savingsBalance -= value
-                database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
+    # Get Savings Balance Account
+    def getSavingsBalance(self):
+        return self.savingsBalance
+    
+    # Set Saving Balance Account
+    def setSavingsBalance(self, operator, value):
+        if operator == '+':
+            self.savingsBalance += value
+            database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
             
-            else:
-                print('Operador inválido.')
+        elif operator == '-' :
+            self.savingsBalance -= value
+            database.setUpdateUserProperty(str(self.accountNumber), 'savingsBalance', self.savingsBalance)
+        
+        else:
+            print('Operador inválido.')
+            
     # Redeem
     def redeem(self):
         pass
