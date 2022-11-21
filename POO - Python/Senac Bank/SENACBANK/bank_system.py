@@ -6,7 +6,7 @@ from random import randint
 
 from system_tools import Tools
 from data_manager import DataManager
-from account import SavingsAccount
+from account import CheckingAccount, SavingsAccount
 
 # Instances
 tools = Tools
@@ -257,10 +257,10 @@ class BankSystem:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
                 
-                # Apply
-                elif chosenOption == '3':
                     loggedUser.setCheckingBalance('-', valueSavings)
                     loggedUser.setSavingsBalance('+', valueSavings)
+                # Apply
+                elif chosenOption == '3':
                     
                     while True:
                         try:
@@ -278,15 +278,25 @@ class BankSystem:
 
                             else:
                                 # Getting current checking balance and seting a new one   
-                                currentSavingsBalance = loggedUser.getSavingsBalance()
-                                
-                                
-                                loggedUser.setSavingsBalance('+', withdrawValue)
+                                currentCheckingBalance = loggedUser.getCheckingBalance()
 
-                                tools.validateTimer('Depositando')
-                                tools.showMessage('O dinheiro foi depositado!')
-                                sleep(3)
-                                break
+                                if currentCheckingBalance >= valueSavings:
+
+                                    loggedUser.setCheckingBalance('-', valueSavings)
+                                    loggedUser.setSavingsBalance('+', valueSavings)
+                                    
+
+                                    tools.validateTimer('Transferindo')
+                                    tools.showMessage('O dinheiro foi transferido com sucesso!')
+                                    sleep(3)
+                                    break
+
+                                else:
+                                    print('Você não possui saldo suficiente para realizar essa transferência.')
+                                
+                                
+                                # loggedUser.setSavingsBalance('+', withdrawValue)
+
                             
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')

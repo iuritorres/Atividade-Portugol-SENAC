@@ -6,7 +6,7 @@ class DataManager:
 
     # return all users of database
     def getAllUsers():
-        with open("./SENACBANK/users.json", encoding= 'utf-8', mode="r") as testeJson:
+        with open("E:/Aluno/Documents/GitHub/SENAC/POO - Python/Senac Bank/SENACBANK/users.json", encoding= 'utf-8', mode="r") as testeJson:
             my_data = json.loads(testeJson.read())
         
         return my_data
@@ -46,7 +46,7 @@ class DataManager:
     # insert update property from user 
     def setUpdateUserProperty(idUser, UpdateProperty, valueUpdateProperty):
         try:
-            with open("./SENACBANK/users.json", encoding='utf-8', mode="r+") as jsonFile:
+            with open("E:/Aluno/Documents/GitHub/SENAC/POO - Python/Senac Bank/SENACBANK/users.json", encoding='utf-8', mode="r+") as jsonFile:
 
                 fileData = json.load(jsonFile)                                              # load file in fileData
                 fileData['users'][str(idUser)][str(UpdateProperty)] = valueUpdateProperty   # set update property from user in fileData
