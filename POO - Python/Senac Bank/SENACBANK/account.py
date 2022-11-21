@@ -1,3 +1,7 @@
+from data_manager import DataManager
+
+BD = DataManager
+
 # Checking Account
 class CheckingAccount():
     def __init__(self, username, password, accountNumber, checkingBalance) -> None:
@@ -13,22 +17,21 @@ class CheckingAccount():
     # Set Checking Balance Account
     def setCheckingBalance(self, operator, value):
         if operator == '+':
+            #Adding current balance with new valueAdding current balance with new value
             self.checkingBalance += value
+            #Update checking Balance from currente user
+            BD.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
+
             
         elif operator == '-' :
+            #Subtracting current balance with new value
             self.checkingBalance -= value
+            #Update checking Balance from currente user
+            BD.setUpdateUserProperty(str(self.accountNumber), 'checkingBalance', self.checkingBalance )
             
         else:
             print('Operador inválido.')
         
-    
-    # Withdraw
-    def withdraw(self):
-        pass
-
-    # Deposit
-    def deposit(self):
-        pass
 
     # Apply
     def apply(self):
