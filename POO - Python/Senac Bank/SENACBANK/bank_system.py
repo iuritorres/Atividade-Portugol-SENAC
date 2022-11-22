@@ -3,6 +3,7 @@ import os
 import sys
 from time import sleep
 from random import randint
+import pwinput
 
 from system_tools import Tools
 from data_manager import DataManager
@@ -47,7 +48,7 @@ class BankSystem:
                         idLogin = str(input('Informe o ID da conta: '))
 
                         try:
-                            passwordLogin = int(input('Informe a senha da conta: '))
+                            passwordLogin = int(pwinput.pwinput(prompt='Informe a senha da conta: '))
                             user = database.getUser(idLogin)
 
                             if type(user) == dict:
@@ -99,7 +100,7 @@ class BankSystem:
                             tools.showMessage('Criando uma nova conta:')
                             print(f'-> Nome: {name}\n')
 
-                            password = int(input('Digite sua senha (4 dígitos numéricos): '))
+                            password = int(pwinput.pwinput(prompt='Digite sua senha (4 dígitos numéricos): '))
                             tools.showMessage('Criando uma nova conta:')
                             print(f'-> Nome: {name}')
                             print(f'-> Senha: {password}\n')
@@ -198,7 +199,7 @@ class BankSystem:
                         try:
                             currentChekingBalance = loggedUser.getCheckingBalance()
 
-                            tools.showMessage('Saque:')
+                            tools.showMessage('Saque:', f'Saldo dispovivel para saque R$ {currentChekingBalance}')
                             withdrawValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja retirar: R$'))
                             
                             if withdrawValue == 0:
@@ -215,14 +216,21 @@ class BankSystem:
                                 sleep(2)
 
                             else:
-                                # Setting new value   
-                                loggedUser.setCheckingBalance('-', withdrawValue)
-                                
-                                tools.validateTimer('Sacando')
-                                tools.showMessage('O saque realizado com sucesso!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
-                                sleep(3)
-                                break
-                            
+
+                                password = int(pwinput.pwinput(prompt='\n-> Digite sua senha para realizar a operação: '))
+                                   
+                                if password == loggedUser.__getattribute__('password'):
+                                    # Setting new value   
+                                    loggedUser.setCheckingBalance('-', withdrawValue)
+                                    
+                                    tools.validateTimer('Sacando')
+                                    tools.showMessage('O saque realizado com sucesso!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
+                                    sleep(3)
+                                    break
+
+                                else:
+                                    tools.showMessage('Senha errada!')
+                                    sleep(2)                            
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
@@ -235,7 +243,7 @@ class BankSystem:
                         try:
                             tools.showMessage('Depósito:')
                             depositValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja depositar: R$'))
-                            
+
                             if depositValue == 0:
                                 tools.showMessage('Operação cancelada!')
                                 sleep(2)
@@ -246,13 +254,18 @@ class BankSystem:
                                 sleep(2)
 
                             else:
-                                loggedUser.setCheckingBalance('+', depositValue)
+                                password = int(pwinput.pwinput(prompt='\n-> Digite sua senha para realizar a operação: '))
+                                   
+                                if password == loggedUser.__getattribute__('password'):
+                                    loggedUser.setCheckingBalance('+', depositValue)
 
-                                tools.validateTimer('Depositando')
-                                tools.showMessage('O dinheiro foi depositado!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
-                                sleep(3)
-                                break
-                            
+                                    tools.validateTimer('Depositando')
+                                    tools.showMessage('O dinheiro foi depositado!', f'Seu saldo atual é R$ {loggedUser.getCheckingBalance()}')
+                                    sleep(3)
+                                    break
+                                else:
+                                    tools.showMessage('Senha errada!')
+                                    sleep(2)
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
@@ -262,7 +275,7 @@ class BankSystem:
                     
                     while True:
                         try:
-                            tools.showMessage('Aplicar:')
+                            tools.showMessage('Aplicar:', f'Saldo conta corrente R$ {loggedUser.getCheckingBalance()}', f'Saldo conta poupança R$ {loggedUser.getSavingsBalance()}' )
                             applyValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja transferir: R$'))
                             
                             if applyValue == 0:
@@ -275,24 +288,31 @@ class BankSystem:
                                 sleep(2)
 
                             else:
-                                # Getting current checking balance and setting a new one   
-                                currentCheckingBalance = loggedUser.getCheckingBalance()
+                                password = int(pwinput.pwinput(prompt='\n-> Digite sua senha para realizar a operação: '))
 
-                                if currentCheckingBalance >= applyValue:
+                                if password == loggedUser.__getattribute__('password'):
+                                    # Getting current checking balance and setting a new one   
+                                    currentCheckingBalance = loggedUser.getCheckingBalance()
 
-                                    loggedUser.setCheckingBalance('-', applyValue)
-                                    loggedUser.setSavingsBalance('+', applyValue)
-                                    
+                                    if currentCheckingBalance >= applyValue:
 
-                                    tools.validateTimer('Transferindo')
-                                    tools.showMessage('O dinheiro foi transferido com sucesso!')
-                                    sleep(3)
-                                    break
+                                        loggedUser.setCheckingBalance('-', applyValue)
+                                        loggedUser.setSavingsBalance('+', applyValue)
+                                        
+
+                                        tools.validateTimer('Transferindo')
+                                        tools.showMessage('O dinheiro foi transferido com sucesso!', f'Saldo conta corrente R$ {loggedUser.getCheckingBalance()}', f'Saldo conta poupança R$ {loggedUser.getSavingsBalance()}')
+                                        sleep(3)
+                                        break
+
+                                    else:
+                                        tools.showMessage('Você não possui saldo suficiente')
+                                        sleep(2)
 
                                 else:
-                                    tools.showMessage('Você não possui saldo suficiente')
+                                    tools.showMessage('Senha errada!')
                                     sleep(2)
-                            
+
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
@@ -301,8 +321,9 @@ class BankSystem:
                 elif chosenOption == '4':
                     while True:
                         try:
-                            tools.showMessage('Resgatar:')
+                            tools.showMessage('Resgatar:', f'Saldo conta corrente R$ {loggedUser.getCheckingBalance()}', f'Saldo conta poupança R$ {loggedUser.getSavingsBalance()}')
                             redeemValue = (int(input('Digite 0 para cancelar a operação.\n\n -> Insira o valor que deseja resgatar: R$')))
+
                             
                             if redeemValue == 0:
                                 tools.showMessage('Operação cancelada!')
@@ -314,30 +335,44 @@ class BankSystem:
                                 sleep(2)
 
                             else:
-                                # Getting current savings balanceand setting a new one 
-                                currentSavingsBalance = loggedUser.getSavingsBalance()
+                                password = int(pwinput.pwinput(prompt='\n-> Digite sua senha para realizar a operação: '))
+                                   
+                                if password == loggedUser.__getattribute__('password'):
+                                    # Getting current savings balanceand setting a new one 
+                                    currentSavingsBalance = loggedUser.getSavingsBalance()
 
-                                if currentSavingsBalance >= redeemValue:
-                                    loggedUser.setSavingsBalance('-', redeemValue)
-                                    loggedUser.setCheckingBalance('+',redeemValue)
+                                    if currentSavingsBalance >= redeemValue:
+                                        loggedUser.setSavingsBalance('-', redeemValue)
+                                        loggedUser.setCheckingBalance('+',redeemValue)
 
-                                    tools.validateTimer('Transferindo')
-                                    tools.showMessage('O dinheiro foi resgatado com sucesso!')
-                                    sleep(3)
-                                    break
-                                    
+                                        tools.validateTimer('Transferindo')
+                                        tools.showMessage('O dinheiro foi resgatado com sucesso!', f'Saldo conta corrente R$ {loggedUser.getCheckingBalance()}', f'Saldo conta poupança R$ {loggedUser.getSavingsBalance()}')
+                                        sleep(3)
+                                        break
+                                        
+                                    else:
+                                        tools.showMessage('Você não possui saldo suficiente')
+                                        sleep(2)
+
                                 else:
-                                    tools.showMessage('Você não possui saldo suficiente')
+                                    tools.showMessage('Senha errada!')
                                     sleep(2)
-
                         except ValueError:
                             tools.showMessage('Por favor, insira um número válido.')
                             sleep(2)
 
                 # Show Data
                 elif chosenOption == '5':
-                    BankSystem.showData(loggedUser.__getattribute__('accountNumber'))
+                    while True:
 
+                        password = int(pwinput.pwinput(prompt='\n-> Digite sua senha para realizar a operação: '))
+                                    
+                        if password == loggedUser.__getattribute__('password'):
+                            BankSystem.showData(loggedUser.__getattribute__('accountNumber'))
+                            break
+                        else:
+                            tools.showMessage('Senha errada!')
+                            sleep(2)
                 # Exit System
                 elif chosenOption == '6':
                     BankSystem.exit()
