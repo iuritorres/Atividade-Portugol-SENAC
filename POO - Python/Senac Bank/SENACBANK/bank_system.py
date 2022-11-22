@@ -263,25 +263,25 @@ class BankSystem:
                     while True:
                         try:
                             tools.showMessage('Aplicar:')
-                            valueSavings = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja transferir: R$'))
+                            applyValue = int(input('Digite 0 para cancelar a operação.\n\n-> Insira o valor que deseja transferir: R$'))
                             
-                            if valueSavings == 0:
+                            if applyValue == 0:
                                 tools.showMessage('Operação cancelada!')
                                 sleep(2)
                                 break
                             
-                            elif valueSavings < 0:
+                            elif applyValue < 0:
                                 tools.showMessage('Por favor, insira um valor maior que zero.')
                                 sleep(2)
 
                             else:
-                                # Getting current checking balance and seting a new one   
+                                # Getting current checking balance and setting a new one   
                                 currentCheckingBalance = loggedUser.getCheckingBalance()
 
-                                if currentCheckingBalance >= valueSavings:
+                                if currentCheckingBalance >= applyValue:
 
-                                    loggedUser.setCheckingBalance('-', valueSavings)
-                                    loggedUser.setSavingsBalance('+', valueSavings)
+                                    loggedUser.setCheckingBalance('-', applyValue)
+                                    loggedUser.setSavingsBalance('+', applyValue)
                                     
 
                                     tools.validateTimer('Transferindo')
@@ -299,11 +299,40 @@ class BankSystem:
 
                 # Redeem
                 elif chosenOption == '4':
-                    try:
-                        pass
-                    except ValueError:
-                        tools.showMessage('Por favor, insira um número válido.')
-                        sleep(2)
+                    while True:
+                        try:
+                            tools.showMessage('Resgatar:')
+                            redeemValue = (int(input('Digite 0 para cancelar a operação.\n\n -> Insira o valor que deseja resgatar: R$')))
+                            
+                            if redeemValue == 0:
+                                tools.showMessage('Operação cancelada!')
+                                sleep(2)
+                                break
+
+                            elif redeemValue < 0:
+                                tools.showMessage('Por favor, digite um valor acima de zero')
+                                sleep(2)
+
+                            else:
+                                # Getting current savings balanceand setting a new one 
+                                currentSavingsBalance = loggedUser.getSavingsBalance()
+
+                                if currentSavingsBalance >= redeemValue:
+                                    loggedUser.setSavingsBalance('-', redeemValue)
+                                    loggedUser.setCheckingBalance('+',redeemValue)
+
+                                    tools.validateTimer('Transferindo')
+                                    tools.showMessage('O dinheiro foi resgatado com sucesso!')
+                                    sleep(3)
+                                    break
+                                    
+                                else:
+                                    tools.showMessage('Você não possui saldo suficiente')
+                                    sleep(2)
+
+                        except ValueError:
+                            tools.showMessage('Por favor, insira um número válido.')
+                            sleep(2)
 
                 # Show Data
                 elif chosenOption == '5':

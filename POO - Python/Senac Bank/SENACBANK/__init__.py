@@ -1,4 +1,4 @@
-# DEVS: IURI TORRES | RAFAEL LUIS | JOAO SOUZA #
+# DEVS: IURI TORRES | RAFAEL LUIS | JOAO SOUZA | Diana Castro #
 
 # imports
 from bank_system import BankSystem
