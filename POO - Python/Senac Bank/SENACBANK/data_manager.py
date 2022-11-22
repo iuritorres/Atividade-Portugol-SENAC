@@ -11,7 +11,7 @@ class DataManager:
                 my_data = json.loads(testeJson.read())
 
         except FileNotFoundError:
-            with open("users.json", encoding= 'utf-8', mode="r") as testeJson:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding= 'utf-8', mode="r") as testeJson:
                 my_data = json.loads(testeJson.read())
         
         return my_data
@@ -49,7 +49,7 @@ class DataManager:
                 json.dump(fileData, jsonFile, indent=4)     # dumps back the new dataBase to jsonFile
 
         except FileNotFoundError:
-            with open("users.json", encoding='utf-8', mode="r+") as jsonFile:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding='utf-8', mode="r+") as jsonFile:
                 fileData = json.load(jsonFile)              # load file in fileData
                 fileData['users'][idNewUser] = Object       # set new user in fileData
                 jsonFile.seek(0)                            # set handle position at 0
@@ -65,7 +65,7 @@ class DataManager:
                 json.dump(fileData, jsonFile, indent=4)                                     # dumps back the new dataBase to jsonFile
 
         except FileNotFoundError:
-            with open("users.json", encoding='utf-8', mode="r+") as jsonFile:
+            with open("SENAC\\POO - Python\\Senac Bank\\SENACBANK\\users.json", encoding='utf-8', mode="r+") as jsonFile:
                 fileData = json.load(jsonFile)                                              # load file in fileData
                 fileData['users'][str(idUser)][str(UpdateProperty)] = valueUpdateProperty   # set update property from user in fileData
                 jsonFile.seek(0)                                                            # set handle position at 0
