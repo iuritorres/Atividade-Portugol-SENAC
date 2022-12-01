@@ -1,6 +1,6 @@
 import sqlite3
 
-conexao = sqlite3.connect('projeto\\projFuncionarios\\bancoDeDados.db')
+conexao = sqlite3.connect('projeto\\projFuncionarios\\models\\bancoDeDados.db')
 cursor = conexao.cursor()
 
 sql = """
@@ -10,7 +10,7 @@ sql = """
         surname TEXT NOT NULL,
         cpf TEXT NOT NULL,
         service_time INTEGER NOT NULL,
-        remuneration INTEGER UNIQUE NOT NULL
+        remuneration INTEGER NOT NULL
     )
 """
 
