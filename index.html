@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inhau</title>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <div className="limitar-secao">
+            <img src="src\assets\logo.png" alt="M-logo" />
+
+            <button onClick={props.changeTheme} "theme-button-border" : ""}>
+                <img src={props.theme ? "src\\assets\\sun.png" : "src\\assets\\moon.png"} alt="mudar-tema" />
+            </button>
+        </div>
+    </header>
+</body>
+</html>
